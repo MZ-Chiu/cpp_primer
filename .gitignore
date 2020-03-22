@@ -1,5 +1,6 @@
 # vscode ================================
 .vscode/*
+.vs/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -14,6 +15,8 @@
 *.lo
 *.o
 *.obj
+*.ilk
+*.pdb
 
 # Precompiled Headers
 *.gch
@@ -38,3 +41,6 @@
 *.exe
 *.out
 *.app
+
+# Others
+*.log
