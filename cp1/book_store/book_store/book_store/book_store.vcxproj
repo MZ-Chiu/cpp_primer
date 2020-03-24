@@ -152,8 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="book_store.cpp" />
+    <ClCompile Include="cp2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cp2.hpp" />
     <ClInclude Include="slaes_item.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

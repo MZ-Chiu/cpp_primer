@@ -18,9 +18,15 @@
     <ClCompile Include="book_store.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cp2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="slaes_item.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cp2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

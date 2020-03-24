@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "slaes_item.hpp"
+#include "cp2.hpp"
 
 void count_repetion_num(void) {
 	int new_val = 0;
@@ -67,19 +68,29 @@ void bookstore_loop(void) {
 		std::cout << "No item enter\n";
 	}
 }
-/*
- * main function
- */
-int main()
-{
-    std::cout << "Hello World!\n";
-	std::cout << "Hello C++ primer, chapter 1\n";
 
+void cp1_loop(void) {
+
+	std::cout << "chapter 1\n";
 	/* Count the repetion numbers */
 	//count_repetion_num();
 
 	/* Bookstore */
 	bookstore_loop();
+}
+
+
+/*
+ * main function
+ */
+int main()
+{
+    std::cout << "Hello C++ primer\n";
+
+	//cp1_loop();
+
+	cp2_loop();
+
 	return 0;
 }
 
