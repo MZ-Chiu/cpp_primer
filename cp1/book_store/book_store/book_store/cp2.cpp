@@ -1,5 +1,11 @@
 #include <iostream>
+#include <string>
 #include "cp2.hpp"
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
 
 void reference_test(void) {
 	int val = 10;
@@ -22,10 +28,48 @@ void const_test(void) {
 	//const int b;// Error must initialize
 }
 
+void string_test(void) {
+	string word;
+	cout << "String test" << endl;
+
+	cout << "Out put uninitialize string" << word << endl;
+
+	//string word;
+	//cout << "cin string test" << endl;
+	//while (cin >> word) {
+	//	cout << word << endl;
+	//}
+
+	//string line;
+	//cout << "getline test" << endl;
+	//while (getline(cin, line)) {
+	//	if (!line.empty()) {
+	//		cout << line << endl;
+	//	}
+	//}
+
+	// Out put bigger string
+	string str1, str2;
+	//cout << "input two string, will output bigger string" << endl;
+	//cin >> str1 >> str2;
+	//string big_str = str1 > str2 ? str1 : str2;
+	//cout << big_str << endl;
+
+	//cout << "input two string, will output longger string" << endl;
+	//cin >> str1 >> str2;
+	//string longger_str = str1.size() > str2.size() ? str1 : str2;
+	//cout << longger_str << endl;
+
+
+
+}
+
 void cp2_loop(void) {
 	std::cout << "Welcom to cp2\n";
 
-	reference_test();
+	//reference_test();
 
-	const_test();
+	//const_test();
+
+	string_test();
 }
