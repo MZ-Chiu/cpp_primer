@@ -49,7 +49,7 @@ void string_test(void) {
 	//}
 
 	// Out put bigger string
-	string str1, str2;
+	//string str1, str2;
 	//cout << "input two string, will output bigger string" << endl;
 	//cin >> str1 >> str2;
 	//string big_str = str1 > str2 ? str1 : str2;
@@ -60,8 +60,48 @@ void string_test(void) {
 	//string longger_str = str1.size() > str2.size() ? str1 : str2;
 	//cout << longger_str << endl;
 
+	// string concatenate
+	//cout << "string concatenate" << endl;
+	//while (cin >> word) {
+	//	cout << word << " ";
+	//}
+	//cout << endl;
+	
+	// string test for loop
+	//string str("Some string, hello!!");
+	//for (decltype(str.size()) index = 0; index < str.size() && !isspace(str[index]); index++)
+	//{
+	//	str[index] = toupper(str[index]);
+	//}
+	//cout << str << endl;
 
+	//decimalism to hex
+	//string deci2hex("0123456789ABCDEF");
+	//int n;
+	//string hex_str;
 
+	//cout << "Enter a decimalism string: ";
+	//while (cin >> n) {
+	//	hex_str += deci2hex[n];
+	//	hex_str += " ";
+	//}
+	//cout << "Convert to hex string: " << hex_str << endl;
+
+	// Exercise 3.2.3
+	//string str;
+	//cin >> str;
+	//for (char &c : str)
+	//{
+	//	c = 'X';
+	//}
+	//cout << str;
+
+	const string cstr("Keep out!");
+	// auto will ignode top-const, and reserve bottom-const
+	for (auto &c : cstr)
+	{
+		cout << c << endl;
+	}
 }
 
 void cp2_loop(void) {
