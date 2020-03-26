@@ -45,3 +45,4 @@
 # Others
 *.log
 *.tlog
+cp1/book_store/book_store/.vs/book_store/v15/ipch/*
