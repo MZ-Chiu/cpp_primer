@@ -131,7 +131,9 @@ void vector_test(void) {
 	//while (cin >> n) {
 	//	grade[n / 10]++;
 	//}
-
+	//for (auto i = grade.begin(); i != grade.end(); i++) {
+	//	cout << *i << endl;
+	//}
 	//for (size_t i = 0; i < 11; i++)
 	//{
 	//	if (i != 10) {
@@ -161,31 +163,47 @@ void vector_test(void) {
 	//cout << endl;
 
 	// Exercise 3.20
-	std::vector<unsigned> ivec;
-	unsigned n = 0;
+	//std::vector<unsigned> ivec;
+	//unsigned n = 0;
 
-	cout << "Enter some number, get the sum of n_begin + n_end" << endl;
-	while (cin >> n) {
-		ivec.push_back(n);
-	}
-	while(ivec.size())
-	{
-		unsigned n1 = 0, n2 = 0, sum = 0;
+	//cout << "Enter some number, get the sum of n_begin + n_end" << endl;
+	//while (cin >> n) {
+	//	ivec.push_back(n);
+	//}
+	//while(ivec.size())
+	//{
+	//	unsigned n1 = 0, n2 = 0, sum = 0;
 
-		n1 = ivec[0];
-		n2 = ivec[ivec.size() - 1];
-		sum = n1 + n2;
-		if (ivec.size() - 1 == 0){
-			sum /= 2;
-		}
-		cout << sum << endl;
+	//	n1 = ivec[0];
+	//	n2 = ivec[ivec.size() - 1];
+	//	sum = n1 + n2;
+	//	if (ivec.size() - 1 == 0){
+	//		sum /= 2;
+	//	}
+	//	cout << sum << endl;
 
-		if (ivec.size() <= 2) {
-			break;
-		}
-		ivec.erase(ivec.begin());
-	    ivec.pop_back();
-	}
+	//	if (ivec.size() <= 2) {
+	//		break;
+	//	}
+	//	ivec.erase(ivec.begin());
+	//    ivec.pop_back();
+	//}
+
+	// Exercise 3.4.1
+	//std::vector<int> ivec;
+
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	ivec.push_back(i);
+	//}
+	//for (auto &i : ivec) 
+	//{
+	//	i *= 2;
+	//}
+	//for (auto i = ivec.begin(); i != ivec.end(); ++i) {
+	//	cout << *i << " ";
+	//}
+	//cout << endl;
 }
 
 void cp2_loop(void) {
