@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include "cp2.hpp"
 
 using std::cin;
@@ -104,6 +106,88 @@ void string_test(void) {
 	}
 }
 
+void vector_test(void) {
+	cout << "welcom to cp3\n";
+
+	//std::vector<string> svec;
+	//string word;
+
+	//cout << "Enter some word" << endl;
+	//while (cin >> word) {
+	//	svec.push_back(word);
+	//}
+	//
+	////for (decltype(svec.size()) i = 0; i < svec.size(); i++)
+	//for (auto i : svec)
+	//{
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//std::vector<unsigned int> grade(11, 0);
+	//unsigned int n = 0;
+
+	//cout << "Enter some score [0:100], we will caculate the member of every 10 score increase " << endl;
+	//while (cin >> n) {
+	//	grade[n / 10]++;
+	//}
+
+	//for (size_t i = 0; i < 11; i++)
+	//{
+	//	if (i != 10) {
+	//		cout << "[" << i * 10 << " : " << i * 10 + 9 << "] " << grade[i] << endl;
+	//	}
+	//	else {
+	//		cout << "[100] " << grade[i] << endl;
+	//	}
+	//}
+
+	// Exercise 3.17
+	//std::vector<string> svec;
+	//string word;
+
+	//cout << "Enter some word, transform to upper" << endl;
+	//while (cin >> word) {
+	//	svec.push_back(word);
+	//}
+	//for (auto &s : svec)
+	//{
+	//	transform(s.begin(), s.end(), s.begin(), toupper);
+	//}
+	//for (auto s : svec)
+	//{
+	//	cout << s << " ";
+	//}
+	//cout << endl;
+
+	// Exercise 3.20
+	std::vector<unsigned> ivec;
+	unsigned n = 0;
+
+	cout << "Enter some number, get the sum of n_begin + n_end" << endl;
+	while (cin >> n) {
+		ivec.push_back(n);
+	}
+	while(ivec.size())
+	{
+		unsigned n1 = 0, n2 = 0, sum = 0;
+
+		n1 = ivec[0];
+		n2 = ivec[ivec.size() - 1];
+		sum = n1 + n2;
+		if (ivec.size() - 1 == 0){
+			sum /= 2;
+		}
+		cout << sum << endl;
+
+		if (ivec.size() <= 2) {
+			break;
+		}
+		ivec.erase(ivec.begin());
+	    ivec.pop_back();
+	}
+}
+
 void cp2_loop(void) {
 	std::cout << "Welcom to cp2\n";
 
@@ -111,5 +195,7 @@ void cp2_loop(void) {
 
 	//const_test();
 
-	string_test();
+	//string_test();
+
+	vector_test();
 }
