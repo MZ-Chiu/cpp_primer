@@ -206,6 +206,75 @@ void vector_test(void) {
 	//cout << endl;
 }
 
+void array_test(void) {
+	//int a[10] = { 0 };
+	//int b[10] = { 0 };
+
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	a[i] = i;
+	//}
+
+	//memcpy(b, a, sizeof(a));
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	cout << b[i] << " ";
+	//}
+	//cout << endl;
+
+	//std::vector<int> avec;
+	//std::vector<int> bvec;
+
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	avec.push_back(i);
+	//}
+	//bvec = avec;
+	//for (auto i : bvec) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//Exercise 3.5.3
+	//int a[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	//int b[10] = { 1, 2, 6, 7, 8, 9, 3, 4, 5, 10 };
+	//int min_size = sizeof(a) > sizeof(b) ? sizeof(a) : sizeof(b);
+	//min_size /= sizeof(a[0]);
+	//int *p1 = &a[1];
+	//int *p2 = &a[4];
+
+	//p1 += p2 - p1;
+	//cout << *p1 << endl;
+
+	//for (auto &i : a) {
+	//	i = 0;
+	//}
+	//for (auto i : a) {
+	//	cout << i << " ";
+	//}
+	//for (size_t i = 0; i < min_size; i++)
+	//{
+
+	//}
+	//cout << endl;
+
+	//std::vector<int> avec;
+	//std::vector<int> bvec;
+
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	avec.push_back(2 * i);
+	//	bvec.push_back(2 * i);
+	//}
+	//bvec.push_back(0);
+	//if (bvec == avec) {
+	//	cout << "avec == bvec" << endl;
+	//}
+	//else {
+	//	cout << "avec != bvec" << endl;
+	//}
+}
+
 void cp2_loop(void) {
 	std::cout << "Welcom to cp2\n";
 
@@ -215,5 +284,7 @@ void cp2_loop(void) {
 
 	//string_test();
 
-	vector_test();
+	//vector_test();
+
+	array_test();
 }
