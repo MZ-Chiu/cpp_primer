@@ -186,6 +186,47 @@ void array_test(void) {
 	//else {
 	//	cout << "avec != bvec" << endl;
 	//}
+
+	int ia[3][4] = {
+		{1,2,3,4},
+		{5,6,7,8},
+		{9,10,11,12},
+	};
+	//for (int (&row)[4] : ia) {
+	//	for (int col : row) {
+	//		cout << col << " ";
+	//	}
+	//	cout << endl;
+	//}
+	//for (int row = 0; row < 3; row++) {
+	//	for (int col = 0; col < 4; col++) {
+	//		cout << ia[row][col] << " ";
+	//	}
+	//	cout << endl;
+	//}
+	//for (int(*p)[4] = ia; p != ia + 3; ++p) {
+	//	for (int *q = *p; q < *p + 4; ++q) {
+	//		cout << *q << " ";
+	//	}
+	//	cout << endl;
+	//}
+
+	//typedef int int_4array[4];
+	using int_4array = int[4];
+	for (int_4array *p = ia; p != ia + 3; ++p)
+	{
+		for (int *q = *p; q != *p + 4; q++)
+		{
+			cout << *q << " ";
+		}
+		cout << endl;
+	}
+	//for (auto &row : ia) {
+	//	for (auto col : row) {
+	//		cout << col << " ";
+	//	}
+	//	cout << endl;
+	//}
 }
 
 void cp3_loop(void) {
@@ -193,5 +234,5 @@ void cp3_loop(void) {
 
 	//vector_test();
 
-	//array_test();
+	array_test();
 }
