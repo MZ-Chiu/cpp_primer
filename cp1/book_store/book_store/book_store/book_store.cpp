@@ -4,6 +4,7 @@
 #include <iostream>
 #include "slaes_item.hpp"
 #include "cp2.hpp"
+#include "cp3.hpp"
 
 void count_repetion_num(void) {
 	int new_val = 0;
@@ -89,8 +90,9 @@ int main()
 
 	//cp1_loop();
 
-	cp2_loop();
+	//cp2_loop();
 
+	cp3_loop();
 	return 0;
 }
 

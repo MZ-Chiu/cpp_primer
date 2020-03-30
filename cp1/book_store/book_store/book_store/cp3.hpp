@@ -1,4 +1,4 @@
 #pragma once
 #include "common.hpp"
 
-void cp2_loop(void);
+void cp3_loop(void);

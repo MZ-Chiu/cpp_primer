@@ -1,11 +1,4 @@
-#include <iostream>
-#include <string>
 #include "cp2.hpp"
-
-using std::cin;
-using std::cout;
-using std::endl;
-using std::string;
 
 void reference_test(void) {
 	int val = 10;
