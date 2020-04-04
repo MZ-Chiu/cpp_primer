@@ -27,6 +27,9 @@
     <ClCompile Include="cp4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cp5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="slaes_item.hpp">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cp4.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cp5.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

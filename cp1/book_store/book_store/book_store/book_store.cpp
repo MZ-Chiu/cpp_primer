@@ -6,6 +6,7 @@
 #include "cp2.hpp"
 #include "cp3.hpp"
 #include "cp4.hpp"
+#include "cp5.hpp"
 
 void count_repetion_num(void) {
 	int new_val = 0;
@@ -95,7 +96,9 @@ int main()
 
 	//cp3_loop();
 
-	cp4_loop();
+	//cp4_loop();
+
+	cp5_loop();
 
 	return 0;
 }

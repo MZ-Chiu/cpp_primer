@@ -59,6 +59,28 @@ void exercise_412(void) {
 	//	cout << "[" << s << "]" << " ";
 	//}
 	//cout << endl;
+
+	int i = 2;
+	double d = 2.5;
+	const string s = "some thing";
+	const string *ps = &s;
+	const char *p = "string";
+	char c = 0;
+	char *pc = &c;
+	void *pv = pc;
+	
+	cout << "Explicit conversions" << endl;
+	//pv = (void *)ps;
+	pv = const_cast<string *>(ps);
+
+	//i = int(*pc);
+	i = static_cast<int>(*pc);
+
+	//pv = &d;
+	pv = &d;
+
+	//pc = (char *)pv;
+	pc = static_cast<char *>(pv);
 }
 
 

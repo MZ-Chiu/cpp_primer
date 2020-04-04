@@ -155,12 +155,14 @@
     <ClCompile Include="cp2.cpp" />
     <ClCompile Include="cp3.cpp" />
     <ClCompile Include="cp4.cpp" />
+    <ClCompile Include="cp5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.hpp" />
     <ClInclude Include="cp2.hpp" />
     <ClInclude Include="cp3.hpp" />
     <ClInclude Include="cp4.hpp" />
+    <ClInclude Include="cp5.hpp" />
     <ClInclude Include="slaes_item.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
