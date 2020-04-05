@@ -1,6 +1,7 @@
 #include "cp5.hpp"
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 using std::vector;
 
@@ -195,10 +196,26 @@ static void exercise_5_4(void) {
 	exercise_5_4_part2();
 }
 
+static void exercise_5_6(void) {
+	try{
+		cout << "Enter 2 num, division" << endl;
+		int a = 0, b = 0;
+		cin >> a >> b;
+		if (b == 0) {
+			throw std::runtime_error("dividend is 0");
+		}
+		cout << a / b << endl;
+	}
+	catch (std::runtime_error err){
+		cout << err.what() <<  endl;
+	}
+}
+
 void cp5_loop(void) {
 	cout << "Welcom to cp5" << endl;
 
 	//exercise_5_2();
 	//exercise_5_3();
-	exercise_5_4();
+	//exercise_5_4();
+	exercise_5_6();
 }
