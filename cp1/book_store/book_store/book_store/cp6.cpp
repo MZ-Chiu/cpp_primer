@@ -108,17 +108,13 @@ static bool str_subrange(const string &str1, const string &str2) {
 	}
 	return true;
 }
-
-static void factorial_int(vector<int> ivec, vector<int>::size_type size) {
-	static vector<int>::size_type org_size = size;
-
-	if (size > 1) {
-		factorial_int(ivec, size - 1);
+static void factorial_int(vector<int> ivec) {
+	if (ivec.size() > 0) {
+		cout << "ivec size = " << ivec.size() << endl;
+		ivec.pop_back();
+		factorial_int(ivec);
 	}
-	cout << ivec[size - 1] << " ";
-	if (size == org_size) {
-		cout << endl;
-	}
+	return;
  }
 
 static void exercise_6_2(void) {
@@ -159,7 +155,7 @@ static void exercise_6_2(void) {
 	//}
 
 	vector<int> ivec = { 1, 2, 3, 4, 5, 6, 7 };
-	factorial_int(ivec, ivec.size());
+	factorial_int(ivec);
 }
 
 //typedef string str_arrT[3];
@@ -203,12 +199,40 @@ static void exercise_6_3() {
 	}
 }
 
+int foo1(int a, int b) {
+	return a + b;
+}
+
+int foo2(int a, int b) {
+	return a - b;
+}
+
+int foo3(int a, int b) {
+	return a * b;
+}
+
+int foo4(int a, int b) {
+	return a / b;
+}
+
+typedef decltype(foo1) *pf;
+
+void exercise_6_7(void) {
+	vector<pf> pf_vec = { foo1, foo2, foo3, foo4 };
+
+	for (auto i : pf_vec) {
+		cout << i(8, 2) << endl;
+	}
+}
+
 void cp6_loop(void) {
 	cout << "Welcom to cp6" << endl;
 
 	//exercise_6_1();
-
+	 
 	//exercise_6_2();
 
-	exercise_6_3();
+	//exercise_6_3();
+
+	exercise_6_7();
 }
