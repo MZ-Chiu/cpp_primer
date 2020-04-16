@@ -183,7 +183,7 @@ static int_arrT &int_arr_reference() {
 }
 
 static void exercise_6_3() {
-	string (*p_s_arr)[3] = string_pointer();
+	string(*p_s_arr)[3] = string_pointer();
 	for (auto s : *p_s_arr) {
 		cout << s << endl;
 	}
@@ -196,6 +196,33 @@ static void exercise_6_3() {
 	int_arrT &ip = int_arr_reference();
 	for (auto i : ip) {
 		cout << i << endl;
+	}
+}
+
+string make_plural(size_t crt, const string &word, const string &ending = "s") {
+
+	return crt > 1 ? word + ending : word;
+}
+
+constexpr int scale(int n) {
+	return n * 2;
+}
+
+static void exercise_6_5() {
+	string plural;
+	int c = 2;
+	int m = scale(c);
+
+	cout << m << endl;
+
+	plural = make_plural(3, "number");
+	cout << plural << endl;
+
+	plural = make_plural(3, "success", "es");
+	cout << plural << endl;
+
+	if (isShorter("String1", "string2xxx")) {
+		cout << "String1 is shorter" << endl;
 	}
 }
 
@@ -215,9 +242,9 @@ int foo4(int a, int b) {
 	return a / b;
 }
 
-typedef decltype(foo1) *pf;
-
 void exercise_6_7(void) {
+	typedef decltype(foo1) *pf;
+
 	vector<pf> pf_vec = { foo1, foo2, foo3, foo4 };
 
 	for (auto i : pf_vec) {
@@ -233,6 +260,8 @@ void cp6_loop(void) {
 	//exercise_6_2();
 
 	//exercise_6_3();
+
+	//exercise_6_5();
 
 	exercise_6_7();
 }
