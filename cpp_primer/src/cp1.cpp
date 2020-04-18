@@ -1,13 +1,5 @@
-// book_store.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
+#include "cp1.hpp"
 #include "slaes_item.hpp"
-#include "cp2.hpp"
-#include "cp3.hpp"
-#include "cp4.hpp"
-#include "cp5.hpp"
-#include "cp6.hpp"
 
 void count_repetion_num(void) {
 	int new_val = 0;
@@ -54,7 +46,7 @@ void bookstore_loop(void) {
 	Sales_item new_item, totol_item;
 
 	std::cout << "Enter some item to caculate\n";
-	if(std::cin >> totol_item){
+	if (std::cin >> totol_item) {
 		while (std::cin >> new_item) {
 			if (new_item.isbn() == totol_item.isbn()) {
 				totol_item += new_item;
@@ -82,37 +74,3 @@ void cp1_loop(void) {
 	/* Bookstore */
 	bookstore_loop();
 }
-
-
-/*
- * main function
- */
-int main()
-{
-    std::cout << "Hello C++ primer\n";
-
-	//cp1_loop();
-
-	//cp2_loop();
-
-	//cp3_loop();
-
-	//cp4_loop();
-
-	//cp5_loop();
-
-	cp6_loop();
-
-	return 0;
-}
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

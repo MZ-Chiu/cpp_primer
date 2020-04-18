@@ -15,49 +15,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="book_store.cpp">
+    <ClCompile Include="src\cp0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp2.cpp">
+    <ClCompile Include="src\cp1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp3.cpp">
+    <ClCompile Include="src\cp2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp4.cpp">
+    <ClCompile Include="src\cp3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp5.cpp">
+    <ClCompile Include="src\cp4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cp6.cpp">
+    <ClCompile Include="src\cp5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="slaes_item.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cp2.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cp3.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cp4.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cp5.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cp6.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="src\cp6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
