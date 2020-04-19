@@ -26,6 +26,18 @@
     <ClCompile Include="src\cp4.cpp" />
     <ClCompile Include="src\cp5.cpp" />
     <ClCompile Include="src\cp6.cpp" />
+    <ClCompile Include="src\cp7.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\common.hpp" />
+    <ClInclude Include="src\cp1.hpp" />
+    <ClInclude Include="src\cp2.hpp" />
+    <ClInclude Include="src\cp3.hpp" />
+    <ClInclude Include="src\cp4.hpp" />
+    <ClInclude Include="src\cp5.hpp" />
+    <ClInclude Include="src\cp6.hpp" />
+    <ClInclude Include="src\cp7.hpp" />
+    <ClInclude Include="src\slaes_item.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -47,9 +47,8 @@ class Sales_item {
 	// and in chapter 14, pages 557, 558, 561
 	friend std::istream& operator>>(std::istream&, Sales_item&);
 	friend std::ostream& operator<<(std::ostream&, const Sales_item&);
-	friend bool operator<(const Sales_item&, const Sales_item&);
-	friend bool
-		operator==(const Sales_item&, const Sales_item&);
+	//friend bool operator<(const Sales_item&, const Sales_item&);
+	friend bool operator==(const Sales_item&, const Sales_item&);
 public:
 	// constructors are explained in section 7.1.4, pages 262 - 265
 	// default constructor needed to initialize members of built-in type
