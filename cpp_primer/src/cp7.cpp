@@ -49,11 +49,54 @@ void ex7_2(void) {
 	p2.print();
 }
 
+void Screen::display(void) {
+	pos size = width_ * height_;
+	pos align = cursor_ % width_;
+
+	for (pos n = 0; n < align; ++n) {
+		cout << " ";
+	}
+	for ( ; cursor_ < size; ++cursor_) {
+		cout << contents_[cursor_];
+		if( (cursor_ + 1) % width_ == 0)
+			cout << endl;
+	}
+}
+Window_mgr &Window_mgr::clear(screen_idx idx) {
+	Screen &s = screens[idx];
+	s.cursor_ = 0;
+	s.contents_ = string(s.height_ * s.width_, 'o');
+
+	return *this;
+}
+
+void ex7_3(void) {
+	Screen s1(6, 8, '*');
+
+	cout << "Dispaly org" << endl;
+	s1.display();
+	
+	cout << "Dispaly atert move(3, 7)" << endl;
+	s1.move(3, 7).display();
+
+	cout << "Dispaly atert move(0, 0)" << endl;
+	s1.move(0, 0).display();
+
+	cout << "Dispaly atert move(2, 2).set('#')" << endl;
+	s1.move(2, 2).set('#').display();
+
+	cout << "Dispaly atert win_mgr.add(s1).clear(0);" << endl;
+	Window_mgr win_mgr;
+	s1.move(0, 0);
+	win_mgr.add(s1).clear(0).display(0);
+}
 void cp7_loop(void) {
 	cout << "Welcom to cp7" << endl;
 
 	//ex7_1();
 
-	ex7_2();
+	//ex7_2();
+
+	ex7_3();
 	 
 }

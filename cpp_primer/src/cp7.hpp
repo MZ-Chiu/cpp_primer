@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "common.hpp"
 
 class Sales_data {
@@ -42,6 +43,53 @@ public:
 
 	void print() const { cout << "name: " << name_ << ", address: " << addr_ << endl; }
 	void read(std::istream &is) { is >> name_ >> addr_; }
+};
+
+class Screen {
+	friend class Window_mgr;
+
+public:
+	typedef string::size_type pos;
+
+	Screen() = default;
+	Screen(pos height, pos width, char c) : height_(height), width_(width), contents_(height * width, c) { }
+
+	void display(void);
+	char get() const { return contents_[cursor_]; }
+	char get(pos h, pos w) const { return contents_[h * width_ + w]; }
+	Screen &set(char c) { contents_[cursor_] = c; return *this; }
+	Screen &move(pos h, pos w) { cursor_ = h * width_ + w; return *this; }
+
+private:
+	pos cursor_ = 0;
+	pos height_ = 0;
+	pos width_ = 0;
+	string contents_;
+
+};
+
+class Window_mgr {
+public:
+	using screen_idx = std::vector<Screen>::size_type;
+
+	Window_mgr &clear(screen_idx idx);
+
+	void display(screen_idx idx) { screens[idx].display(); };
+
+	Window_mgr &add(Screen s) { screens.push_back(s); return *this; }
+
+private:
+	std::vector<Screen> screens;
+};
+
+class Y;
+
+class X {
+	Y *py;
+};
+
+class Y {
+	X x;
 };
 
 void cp7_loop(void);
