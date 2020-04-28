@@ -59,6 +59,7 @@ public:
 	char get(pos h, pos w) const { return contents_[h * width_ + w]; }
 	Screen &set(char c) { contents_[cursor_] = c; return *this; }
 	Screen &move(pos h, pos w) { cursor_ = h * width_ + w; return *this; }
+	pos size(void) const { return height_ * width_; };
 
 private:
 	pos cursor_ = 0;

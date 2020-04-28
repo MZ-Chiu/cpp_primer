@@ -73,6 +73,8 @@ Window_mgr &Window_mgr::clear(screen_idx idx) {
 void ex7_3(void) {
 	Screen s1(6, 8, '*');
 
+	cout << s1.size() << endl;
+
 	cout << "Dispaly org" << endl;
 	s1.display();
 	
@@ -90,6 +92,35 @@ void ex7_3(void) {
 	s1.move(0, 0);
 	win_mgr.add(s1).clear(0).display(0);
 }
+
+void ex7_4() {
+	;
+}
+
+class noDefault {
+
+public:
+	noDefault(int a) { x = a; }
+
+	int x;
+};
+
+class C {
+public:
+	C(): d(1) {};
+
+	noDefault d;
+	int y;
+};
+
+void ex7_5() {
+	noDefault noD(1);
+	C dft;
+
+	cout << noD.x << endl;
+	cout << dft.d.x << endl;
+}
+
 void cp7_loop(void) {
 	cout << "Welcom to cp7" << endl;
 
@@ -97,6 +128,10 @@ void cp7_loop(void) {
 
 	//ex7_2();
 
-	ex7_3();
-	 
+	//ex7_3();
+
+	//ex7_4();
+
+	ex7_5();
+
 }
