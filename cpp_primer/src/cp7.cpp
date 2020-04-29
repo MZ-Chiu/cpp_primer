@@ -116,9 +116,16 @@ public:
 void ex7_5() {
 	noDefault noD(1);
 	C dft;
+	std::vector<noDefault> nvec(3, 9);
+	//std::vector<noDefault> nvec(3, 9); // Error, must have parameter for constructor
 
+	for (auto i : nvec) {
+		cout << i.x << endl;
+	}
 	cout << noD.x << endl;
 	cout << dft.d.x << endl;
+
+	/* 7.5.4 finish */
 }
 
 void cp7_loop(void) {
