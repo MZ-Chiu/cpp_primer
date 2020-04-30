@@ -6,6 +6,7 @@
 #include "cp5.hpp"
 #include "cp6.hpp"
 #include "cp7.hpp"
+#include "cp8.hpp"
 
 /*
  * main function
@@ -26,7 +27,9 @@ int main()
 
 	//cp6_loop();
 
-	cp7_loop();
+	//cp7_loop();
+	
+	cp8_loop();
 
 	return 0;
 }

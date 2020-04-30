@@ -27,6 +27,7 @@
     <ClCompile Include="src\cp5.cpp" />
     <ClCompile Include="src\cp6.cpp" />
     <ClCompile Include="src\cp7.cpp" />
+    <ClCompile Include="src\cp8.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common.hpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="src\cp5.hpp" />
     <ClInclude Include="src\cp6.hpp" />
     <ClInclude Include="src\cp7.hpp" />
+    <ClInclude Include="src\cp8.hpp" />
     <ClInclude Include="src\slaes_item.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
