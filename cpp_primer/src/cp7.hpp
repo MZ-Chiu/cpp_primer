@@ -7,7 +7,7 @@ class Sales_data {
 	friend std::istream &read(std::istream &is, Sales_data &item);
 	friend std::ostream &print(std::ostream &os, const Sales_data &item);
 
-public:
+private:
 	string   bookNo_;
 	uint32_t unit_sole_;
 	double   revenue_;
@@ -17,11 +17,11 @@ public:
 		cout << "Constructor 1" << endl;
 	}
 	Sales_data() : unit_sole_(0) {
-		cout << "Constructor 2" << endl;
+		//cout << "Constructor 2" << endl;
 	}
 	Sales_data(std::istream &is) { 
 		is >> bookNo_;
-		cout << "Constructor 3" << endl;
+		//cout << "Constructor 3" << endl;
 	}
 
 	string isbn() const { return bookNo_; };
