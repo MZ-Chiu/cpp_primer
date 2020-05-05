@@ -7,6 +7,7 @@
 #include "cp6.hpp"
 #include "cp7.hpp"
 #include "cp8.hpp"
+#include "cp9.hpp"
 
 /*
  * main function
@@ -29,7 +30,9 @@ int main()
 
 	//cp7_loop();
 	
-	cp8_loop();
+	//cp8_loop();
+
+	cp9_loop();
 
 	return 0;
 }
