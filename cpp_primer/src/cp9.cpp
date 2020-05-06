@@ -15,7 +15,7 @@ bool find_in_container(std::vector<int>::iterator begin,
 	return false;
 }
 
-void ex9_1(void) {
+void ex9_1_2_3(void) {
 	// 9.2
 	//std::list<std::deque<int> > dq_list;
 
@@ -77,20 +77,79 @@ void ex9_1(void) {
 	//cout << endl;
 
 	// 9.22
-	int somevalue = 2;
-	std::vector<int> ivec = { 1, 2, 3, 2, 4, 5, 6, 7, 8 };
-	auto iter = ivec.begin();
-	auto mid = iter + (ivec.end() - iter) / 2;
+	//int somevalue = 2;
+	//std::vector<int> ivec = { 1, 2, 3, 2, 4, 5, 6, 7, 8 };
+	//auto iter = ivec.begin();
+	//auto mid = iter + (ivec.end() - iter) / 2;
 
-	while (iter < mid) {
-		if (*iter == somevalue) {
-			iter = ivec.insert(iter, 2 * somevalue);
-			iter++;
-			mid = ivec.begin() + (ivec.end() - ivec.begin()) / 2 ;
+	//while (iter < mid) {
+	//	if (*iter == somevalue) {
+	//		iter = ivec.insert(iter, 2 * somevalue);
+	//		iter++;
+	//		mid = ivec.begin() + (ivec.end() - ivec.begin()) / 2 ;
+	//	}
+	//	iter++;
+	//}
+	//for (auto i : ivec) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+}
+
+void ex9_3(void) {
+	//9.24
+	//std::vector<int> iv = {99, 88, 77};
+
+	//cout << iv.at(0) << endl;
+	//cout << iv[0] << endl;
+	//cout << iv.front() << endl;
+	//cout << *iv.begin() << endl;
+	//cout << iv.back() << endl;
+
+	//9.25
+	//auto it = iv.end();
+	//iv.erase(it, it);
+	//for (auto i : iv) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	// 9.26
+	int ia[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 55, 89};
+	std::vector<int> iv;
+	std::list<int> il;
+
+	//std::copy(ia, ia + sizeof(ia) / sizeof(ia[0]), std::back_inserter(iv));
+	std::copy(ia, ia + sizeof(ia) / sizeof(ia[0]), std::back_inserter(il));
+	iv.assign(ia, ia + sizeof(ia) / sizeof(ia[0]));
+	auto it = iv.begin();
+	auto it2 = il.begin();
+
+	cout << "Make iv remain odd:" << endl;
+	while(it != iv.end()) {
+		if (*it % 2 == 0) {
+			it = iv.erase(it);
 		}
-		iter++;
+		else {
+			it++;
+		}
 	}
-	for (auto i : ivec) {
+	cout << "Make il remain even:" << endl;
+	while (it2 != il.end()) {
+		if (*it2 % 2) {
+			it2 = il.erase(it2);
+		}
+		else {
+			it2++;
+		}
+	}
+	cout << "Out put iv:" << endl;
+	for (auto i : iv) {
+		cout << i << " ";
+	}
+	cout << endl;
+	cout << "Out put il:" << endl;
+	for (auto i : il) {
 		cout << i << " ";
 	}
 	cout << endl;
@@ -99,5 +158,7 @@ void ex9_1(void) {
 void cp9_loop(void) {
 	cout << "Welcom to cp9" << endl;
 
-	ex9_1();
+	//ex9_1_2_3();
+
+	ex9_3();
 }
