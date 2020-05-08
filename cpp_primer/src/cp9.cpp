@@ -158,6 +158,7 @@ void ex9_3(void) {
 	//std::forward_list<int> flst = { 0, 1, 4, 2, 67, 21 ,3, 12, 34, 2, 1, 12, 12, 12, 32 ,57, 32};
 	//auto prev = flst.before_begin();
 	//auto curr = flst.begin();
+	// //auto end = flst.end();//err, update in while loop, cause erase will make end unuseful
 
 	//while (curr != flst.end()) {
 	//	if (*curr % 2) {
@@ -173,20 +174,53 @@ void ex9_3(void) {
 	//cout << endl;
 
 	//9.28
-	std::forward_list<string> str_flist = { "111", "222", "333", "444"};
-	auto prev = str_flist.before_begin();
-	auto curr = str_flist.begin();
-	auto end = str_flist.end();
+	//std::forward_list<string> str_flist = { "111", "222", "333", "444"};
+	//auto prev = str_flist.before_begin();
+	//auto curr = str_flist.begin();
 
-	while (curr != end) {
-		if (*curr == "444" || ++curr == end) {
-			str_flist.insert_after(curr, "xxx");
-			break;
+	//while (curr != str_flist.end()) {
+	//	if (*curr == "555" || ++curr == str_flist.end()) {
+	//		str_flist.insert_after(curr, "xxx");
+	//		break;
+	//	}
+	//}
+
+	//for (auto it : str_flist) {
+	//	cout << it << " ";
+	//}
+	//cout << endl;
+
+	// 9.29
+	//std::vector<int> iv(10, 9);
+
+	//iv.resize(15);
+	//for (auto i : iv) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//iv.resize(5);
+	//for (auto i : iv) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//9.31
+	std::forward_list<int> flist = {1,2,3,4,5,6,7,8,9};
+	auto prev = flist.before_begin();
+	auto curr = flist.begin();
+
+	while (curr != flist.end()) {
+		if (*curr % 2 == 0) {
+			curr = flist.erase_after(prev);
+		}
+		else {
+			prev = curr = flist.insert_after(curr, *curr);
+			++curr;
 		}
 	}
-
-	for (auto it : str_flist) {
-		cout << it << " ";
+	for (auto i : flist) {
+		cout << i << " ";
 	}
 	cout << endl;
 }
