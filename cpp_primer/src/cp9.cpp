@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include <forward_list>
 
 bool find_in_container(std::vector<int>::iterator begin,
 					   std::vector<int>::iterator end, 
@@ -115,42 +116,77 @@ void ex9_3(void) {
 	//cout << endl;
 
 	// 9.26
-	int ia[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 55, 89};
-	std::vector<int> iv;
-	std::list<int> il;
+	//int ia[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 55, 89};
+	//std::vector<int> iv;
+	//std::list<int> il;
 
-	//std::copy(ia, ia + sizeof(ia) / sizeof(ia[0]), std::back_inserter(iv));
-	std::copy(ia, ia + sizeof(ia) / sizeof(ia[0]), std::back_inserter(il));
-	iv.assign(ia, ia + sizeof(ia) / sizeof(ia[0]));
-	auto it = iv.begin();
-	auto it2 = il.begin();
+	//std::copy(ia, ia + sizeof(ia) / sizeof(ia[0]), std::back_inserter(il));
+	//iv.assign(ia, ia + sizeof(ia) / sizeof(ia[0]));
+	//auto it = iv.begin();
+	//auto it2 = il.begin();
 
-	cout << "Make iv remain odd:" << endl;
-	while(it != iv.end()) {
-		if (*it % 2 == 0) {
-			it = iv.erase(it);
-		}
-		else {
-			it++;
+	//cout << "Make iv remain odd:" << endl;
+	//while(it != iv.end()) {
+	//	if (*it % 2 == 0) {
+	//		it = iv.erase(it);
+	//	}
+	//	else {
+	//		it++;
+	//	}
+	//}
+	//cout << "Make il remain even:" << endl;
+	//while (it2 != il.end()) {
+	//	if (*it2 % 2) {
+	//		it2 = il.erase(it2);
+	//	}
+	//	else {
+	//		it2++;
+	//	}
+	//}
+	//cout << "Out put iv:" << endl;
+	//for (auto i : iv) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+	//cout << "Out put il:" << endl;
+	//for (auto i : il) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//9.27
+	//std::forward_list<int> flst = { 0, 1, 4, 2, 67, 21 ,3, 12, 34, 2, 1, 12, 12, 12, 32 ,57, 32};
+	//auto prev = flst.before_begin();
+	//auto curr = flst.begin();
+
+	//while (curr != flst.end()) {
+	//	if (*curr % 2) {
+	//		curr = flst.erase_after(prev);
+	//	}
+	//	else {
+	//		prev = curr++;
+	//	}
+	//}
+	//for (auto it : flst) {
+	//	cout << it << " ";
+	//}
+	//cout << endl;
+
+	//9.28
+	std::forward_list<string> str_flist = { "111", "222", "333", "444"};
+	auto prev = str_flist.before_begin();
+	auto curr = str_flist.begin();
+	auto end = str_flist.end();
+
+	while (curr != end) {
+		if (*curr == "444" || ++curr == end) {
+			str_flist.insert_after(curr, "xxx");
+			break;
 		}
 	}
-	cout << "Make il remain even:" << endl;
-	while (it2 != il.end()) {
-		if (*it2 % 2) {
-			it2 = il.erase(it2);
-		}
-		else {
-			it2++;
-		}
-	}
-	cout << "Out put iv:" << endl;
-	for (auto i : iv) {
-		cout << i << " ";
-	}
-	cout << endl;
-	cout << "Out put il:" << endl;
-	for (auto i : il) {
-		cout << i << " ";
+
+	for (auto it : str_flist) {
+		cout << it << " ";
 	}
 	cout << endl;
 }
