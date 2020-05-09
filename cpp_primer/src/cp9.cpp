@@ -206,23 +206,67 @@ void ex9_3(void) {
 	//cout << endl;
 
 	//9.31
-	std::forward_list<int> flist = {1,2,3,4,5,6,7,8,9};
-	auto prev = flist.before_begin();
-	auto curr = flist.begin();
+	//std::forward_list<int> flist = {1,2,3,4,5,6,7,8,9};
+	//auto prev = flist.before_begin();
+	//auto curr = flist.begin();
 
-	while (curr != flist.end()) {
-		if (*curr % 2 == 0) {
-			curr = flist.erase_after(prev);
-		}
-		else {
-			prev = curr = flist.insert_after(curr, *curr);
+	//while (curr != flist.end()) {
+	//	if (*curr % 2 == 0) {
+	//		curr = flist.erase_after(prev);
+	//	}
+	//	else {
+	//		prev = curr = flist.insert_after(curr, *curr);
+	//		++curr;
+	//	}
+	//}
+	//for (auto i : flist) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	//9.33
+	//std::vector<int> iv(10, 1);
+	//auto curr = iv.begin();
+
+	//while (curr != iv.end()) {
+	//	++curr;
+	//	++curr;
+	//}
+	//cout << "End" << endl;
+
+    //9.34
+	std::vector<int> iv = {12, 32, 1, 111, 54, 123, 82, 12, 17, 12, 97, 32};
+	auto curr = iv.begin();
+
+	while (curr != iv.end()) {
+		if (*curr % 2) {
+			curr = iv.insert(curr, *curr);
 			++curr;
 		}
+		++curr;
 	}
-	for (auto i : flist) {
+	for (auto i : iv) {
 		cout << i << " ";
 	}
 	cout << endl;
+}
+
+void ex9_4(void) {
+	;
+}
+
+void ex9_5(void) {
+	std::vector<char> cv = { 'a', 'b', 'c', 'd', 'e', 'f'};
+	string s(cv.begin(), cv.end());
+	cout << s << endl;
+
+	//string s;
+	//char c;
+	//s.reserve(10);
+
+	//while (cin >> c) {
+	//	s.push_back(c);
+	//}
 }
 
 void cp9_loop(void) {
@@ -230,5 +274,9 @@ void cp9_loop(void) {
 
 	//ex9_1_2_3();
 
-	ex9_3();
+	//ex9_3();
+
+	//ex9_4();
+
+	ex9_5();
 }
