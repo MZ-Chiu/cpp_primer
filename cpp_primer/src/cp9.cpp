@@ -255,11 +255,24 @@ void ex9_4(void) {
 	;
 }
 
+void string_replace(string &str, const string &old_str, const string &new_str) {
+	auto pos = str.find(old_str);
+
+	if (pos >= 0) {
+		auto it = str.begin() + pos;
+
+		str.erase(pos, old_str.size());
+		str.insert(pos, new_str.c_str());
+	}
+}
+
 void ex9_5(void) {
+	//9.41
 	std::vector<char> cv = { 'a', 'b', 'c', 'd', 'e', 'f'};
 	string s(cv.begin(), cv.end());
 	cout << s << endl;
 
+	//9.42
 	//string s;
 	//char c;
 	//s.reserve(10);
@@ -267,6 +280,11 @@ void ex9_5(void) {
 	//while (cin >> c) {
 	//	s.push_back(c);
 	//}
+
+	//9.43
+	string str("though"), old_str("tho"), new_str("thro");
+	string_replace(str, old_str, new_str);
+	cout << str << endl;
 }
 
 void cp9_loop(void) {
