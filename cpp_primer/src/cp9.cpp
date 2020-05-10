@@ -3,6 +3,8 @@
 #include <list>
 #include <deque>
 #include <forward_list>
+#include <fstream>
+#include <sstream>
 
 bool find_in_container(std::vector<int>::iterator begin,
 					   std::vector<int>::iterator end, 
@@ -258,7 +260,7 @@ void ex9_4(void) {
 void string_replace(string &str, const string &old_str, const string &new_str) {
 	auto pos = str.find(old_str);
 
-	if (pos >= 0) {
+	if (pos != string::npos) {
 		auto it = str.begin() + pos;
 
 		str.erase(pos, old_str.size());
@@ -266,11 +268,148 @@ void string_replace(string &str, const string &old_str, const string &new_str) {
 	}
 }
 
+void string_replace2(string &str, const string &old_str, const string &new_str) {
+	auto pos = str.find(old_str);
+
+	if (pos != string::npos) {
+		str.replace(pos, old_str.size(), new_str);
+	}
+}
+
+string name_complete(const string &name, const string &prefix, const string &subfix) {
+	//return prefix + " " + name + subfix;
+	string s(name);
+
+	//s.insert(s.begin(), prefix.begin(), prefix.end());
+	//s.append(subfix.begin(), subfix.end());
+
+	s.insert(0, prefix.c_str());
+	s.insert(s.size(), subfix.c_str());
+	return s;
+}
+
+void find_character(const string &s, string &find) {
+	string number("0123456789");
+	find.clear();
+	string::size_type pos = 0;
+
+	while ((pos = s.find_first_not_of(number, pos)) != string::npos) {
+		find.push_back(s[pos]);
+		++pos;
+	}
+}
+
+void find_number(const string &s, string &find) {
+	string number("0123456789");
+	find.clear();
+	string::size_type pos = 0;
+
+	while ((pos = s.find_first_of(number, pos)) != string::npos) {
+		find.push_back(s[pos]);
+		++pos;
+	}
+}
+
+/* Find the longest word in input stream, which don't contain s1/s2 */
+void find_longest_word(std::istream &is, const string &s1, const string &s2) {
+	string word;
+	string result;
+	string::size_type pos = 0;
+
+	while (is >> word) {
+		if (word.find_first_of(s1 + s2) == string::npos) {
+
+			if (word.size() > result.size()) {
+				result = word;
+			}
+		}
+	}
+	if (!result.empty()) {
+		cout << "Longest word withou [" << s1 << "] and [" << s2 << "] is: " << result << endl;;
+	}
+	else {
+		cout << "Not result" << endl;
+	}
+}
+
+int cacul_sum_in_svec(std::vector<string> &sv) {
+	int sum = 0;
+
+	for (auto s : sv) {
+		sum += std::stoi(s);
+	}
+	return sum;
+}
+
+Date::Date(const string &s) {
+	const std::vector<string> month_vec = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	int result = 0;
+	size_t pos = 0;
+	string format_str = s;
+
+	auto find_month = [&] (const string &s) {
+		for (std::vector<string>::size_type i = 0; i != month_vec.size(); ++i) {
+			if (month_vec[i].find(s.substr(0, 3)) != string::npos) {
+				return i + 1;
+			}
+		}
+		return 0u;
+	};
+
+	auto get_date = [&] (int type) {
+		std::istringstream iss(format_str);
+		string subs;
+
+		if (type == 1 || type == 3) {
+			iss >> subs;
+			_month = find_month(subs);
+			iss >> subs;
+			_day = stoi(subs);
+			iss >> subs;
+			_year = stoi(subs);
+		} else if (type == 2) {
+			iss >> subs;
+			_day = stoi(subs);
+			iss >> subs;
+			_month = stoi(subs);
+			iss >> subs;
+			_year = stoi(subs);
+		}
+	};
+
+	if ( (pos = s.find(",")) != string::npos ) {
+		// 1st type string: January 1, 1900
+		format_str.replace(pos, 1, " ");
+		get_date(1);
+	}
+	else if ((pos = s.find("/")) != string::npos) {
+		// 2nd type string: 1/1/1900
+		format_str.replace(pos, 1, " ");
+		if ((pos = s.find("/", ++pos)) != string::npos) {
+			format_str.replace(pos, 1, " ");
+		}
+		else {
+			result = -1;
+		}
+		get_date(2);
+	}
+	else {
+		// 3nd type string: Jan 1 1900
+		get_date(3);
+	}
+	if (result < 0) {
+		cout << "Err string: " << s << endl;
+	}
+	else {
+		cout << "year: " << _year << " month: " << _month << " day: " << _day << endl;
+	}
+}
+
 void ex9_5(void) {
 	//9.41
-	std::vector<char> cv = { 'a', 'b', 'c', 'd', 'e', 'f'};
+	/*std::vector<char> cv = { 'a', 'b', 'c', 'd', 'e', 'f'};
 	string s(cv.begin(), cv.end());
-	cout << s << endl;
+	cout << s << endl;*/
 
 	//9.42
 	//string s;
@@ -282,9 +421,39 @@ void ex9_5(void) {
 	//}
 
 	//9.43
-	string str("though"), old_str("tho"), new_str("thro");
-	string_replace(str, old_str, new_str);
-	cout << str << endl;
+	//string str("though"), str2("though"), old_str("tho"), new_str("thro");
+	//string_replace(str, old_str, new_str);
+	//cout << str << endl;
+
+	// 9.44
+	//string_replace2(str2, old_str, new_str);
+	//cout << str2 << endl;
+
+	//9.45
+	//string s = name_complete("qiu", "Mr. ", "mingz");
+	//cout << s << endl;
+
+	//9.47
+	//string s("ab2c3d7R4E6");
+	//string find;
+	//find_number(s, find);
+	//cout << find << endl;
+	//find_character(s, find);
+	//cout << find << endl;
+
+	// 9.49
+	//string s1("abc"), s2("xyz");
+	//std::ifstream ifs("F:/workspace/CPP/cpp_primer/data/longest_word.txt", std::ios::in);
+	//find_longest_word(ifs, s1, s2);
+
+	// 9.50
+	//std::vector<string> sv(5, "55");
+	//cout << "Sum of sv is: " << cacul_sum_in_svec(sv) << endl;
+
+	// 9.51
+	Date date1("January 1, 1900");
+	Date date2("1/12/1900");
+	Date date3("Oct 1 1900");
 }
 
 void cp9_loop(void) {
