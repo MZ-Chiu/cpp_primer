@@ -5,6 +5,7 @@
 #include <forward_list>
 #include <fstream>
 #include <sstream>
+#include <stack>
 
 bool find_in_container(std::vector<int>::iterator begin,
 					   std::vector<int>::iterator end, 
@@ -456,6 +457,31 @@ void ex9_5(void) {
 	Date date3("Oct 1 1900");
 }
 
+void ex9_6() {
+	std::stack<char> c_stack;
+	char c;
+	bool start = false;
+	string expression;
+
+	while (cin >> c) {
+		if (c == '(') {
+			start = true;
+		}
+		if (start) {
+			c_stack.push(c);
+			if (c == ')') {
+				break;
+			}
+		}
+	}
+	while (!c_stack.empty()) {
+		expression += c_stack.top();
+		c_stack.pop();
+	}
+	std::reverse(expression.begin(), expression.end());
+	cout << expression << endl;
+}
+
 void cp9_loop(void) {
 	cout << "Welcom to cp9" << endl;
 
@@ -465,5 +491,7 @@ void cp9_loop(void) {
 
 	//ex9_4();
 
-	ex9_5();
+	//ex9_5();
+
+	ex9_6();
 }
