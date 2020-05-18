@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
-
+#include <functional>
 
 void ex10_1() {
 	std::vector<int> iv = { 1, 2, 3,4 ,5 ,6 ,4 ,3 ,2, 1, 1 };
@@ -59,6 +59,10 @@ bool isShorter(const string &a, const string &b) {
 	return a.size() < b.size();
 }
 
+bool isShorter1(const string &a, std::string::size_type sz) {
+	return a.size() < sz;
+}
+
 void elimDups(std::vector<string> &words) {
 	std::sort(words.begin(), words.end());
 	auto end_unique = std::unique(words.begin(), words.end());
@@ -89,6 +93,34 @@ void biggies1(std::vector<string> &words, std::vector<string>::size_type sz) {
 	cout << endl;
 }
 
+void biggies2(std::vector<string> &words, std::vector<string>::size_type sz) {
+	elimDups(words);
+	std::stable_sort(words.begin(), words.end(), isShorter);
+	auto end = std::stable_partition(words.begin(), words.end(), [sz](const string &s) { return s.size() > sz; });
+	auto wc = std::count_if(words.begin(), words.end(), std::bind(isShorter1, std::placeholders::_1, sz));
+	cout << "There are " << wc << " words's size longger then " << sz << endl;
+	std::for_each(words.begin(), end, [](const string &s) { cout << s << " "; });
+	cout << endl;
+}
+
+bool checkSize1(string s, std::string::size_type sz) {
+	return s.size() > sz;
+}
+
+void biggies3(std::vector<string> &words, std::vector<string>::size_type sz) {
+	elimDups(words);
+	std::stable_sort(words.begin(), words.end(), isShorter);
+	auto end = std::stable_partition(words.begin(), words.end(), std::bind(checkSize1, std::placeholders::_1, sz));
+	auto wc = std::count_if(words.begin(), words.end(), std::bind(isShorter1, std::placeholders::_1, sz));
+	cout << "There are " << wc << " words's size longger then " << sz << endl;
+	std::for_each(words.begin(), end, [](const string &s) { cout << s << " "; });
+	cout << endl;
+}
+
+bool checkSize(unsigned a, std::string::size_type sz) {
+	return sz < a;
+}
+
 void ex10_3(void) {
 	// 10.11
 	//std::vector<string> words = { "the", "quick", "red", "fox",
@@ -117,24 +149,41 @@ void ex10_3(void) {
 	//biggies1(words, 4);
 
 	// 10.21
-	int a = 10;
-	auto f = [](int &a) -> bool { 
-		if (a > 0) {
-			--a; 
-			return false;
-		}
-		else {
-			return true;
-		}
-	};
+	//int a = 10;
+	//auto f = [](int &a) -> bool { 
+	//	if (a > 0) {
+	//		--a; 
+	//		return false;
+	//	}
+	//	else {
+	//		return true;
+	//	}
+	//};
 
-	cout << "a = " << a << endl;
-	while (1) {
-		if (f(a)) {
-			cout << "a = " << a << endl;
-			break;
-		}
-	}
+	//cout << "a = " << a << endl;
+	//while (1) {
+	//	if (f(a)) {
+	//		cout << "a = " << a << endl;
+	//		break;
+	//	}
+	//}
+
+	// 10.22
+	std::vector<string> words = { "the", "quick", "red", "fox",
+		"jumps", "over", "the", "slow", "red", "turtle" };
+	//biggies2(words, 4);
+
+	// 10.23, bind can accecpt infinite number of arguments.
+
+	// 10.24
+	//string s("12345");
+	//std::vector<unsigned> iv = {1, 2, 3, 4, 5, 6, 7, 8 };
+	//
+	//auto end = std::find_if(iv.begin(), iv.end(), std::bind(checkSize, std::placeholders::_1, s.size()));
+	//cout << *end << endl;
+
+	// 10.25
+	biggies3(words, 4);
 }
 
 void cp10_loop(void) {
