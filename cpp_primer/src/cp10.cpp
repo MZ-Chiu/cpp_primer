@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <numeric>
 #include <functional>
+#include <iterator>
+#include <deque>
 
 void ex10_1() {
 	std::vector<int> iv = { 1, 2, 3,4 ,5 ,6 ,4 ,3 ,2, 1, 1 };
@@ -183,7 +185,29 @@ void ex10_3(void) {
 	//cout << *end << endl;
 
 	// 10.25
-	biggies3(words, 4);
+	//biggies3(words, 4);
+
+	// 10.28
+	std::vector<int> iv = {1, 2, 3, 4, 5, 6, 7, 8 , 9, 0};
+	std::vector<int> iv1;
+	std::vector<int> iv2;
+	std::deque<int> iv3;
+	auto my_print = [](std::vector<int> &v) {
+		for (auto i : v) {
+			cout << i << " ";
+		}
+		cout << endl; 
+	};
+
+	std::copy(iv.begin(),iv.end(), std::back_inserter(iv1));
+	my_print(iv1);
+	std::copy(iv.begin(),iv.end(), std::inserter(iv2, iv2.begin()));
+	my_print(iv2);
+	std::copy(iv.begin(),iv.end(), std::front_inserter(iv3));
+	for (auto i : iv3) {
+		cout << i << " ";
+	}
+	cout << endl;
 }
 
 void cp10_loop(void) {
