@@ -5,6 +5,7 @@
 #include <functional>
 #include <iterator>
 #include <deque>
+#include <fstream>
 
 void ex10_1() {
 	std::vector<int> iv = { 1, 2, 3,4 ,5 ,6 ,4 ,3 ,2, 1, 1 };
@@ -171,8 +172,8 @@ void ex10_3(void) {
 	//}
 
 	// 10.22
-	std::vector<string> words = { "the", "quick", "red", "fox",
-		"jumps", "over", "the", "slow", "red", "turtle" };
+	//std::vector<string> words = { "the", "quick", "red", "fox",
+	//	"jumps", "over", "the", "slow", "red", "turtle" };
 	//biggies2(words, 4);
 
 	// 10.23, bind can accecpt infinite number of arguments.
@@ -188,26 +189,47 @@ void ex10_3(void) {
 	//biggies3(words, 4);
 
 	// 10.28
-	std::vector<int> iv = {1, 2, 3, 4, 5, 6, 7, 8 , 9, 0};
-	std::vector<int> iv1;
-	std::vector<int> iv2;
-	std::deque<int> iv3;
-	auto my_print = [](std::vector<int> &v) {
-		for (auto i : v) {
-			cout << i << " ";
-		}
-		cout << endl; 
-	};
+	//std::vector<int> iv = {1, 2, 3, 4, 5, 6, 7, 8 , 9, 0};
+	//std::vector<int> iv1;
+	//std::vector<int> iv2;
+	//std::deque<int> iv3;
+	//auto my_print = [](std::vector<int> &v) {
+	//	for (auto i : v) {
+	//		cout << i << " ";
+	//	}
+	//	cout << endl; 
+	//};
 
-	std::copy(iv.begin(),iv.end(), std::back_inserter(iv1));
-	my_print(iv1);
-	std::copy(iv.begin(),iv.end(), std::inserter(iv2, iv2.begin()));
-	my_print(iv2);
-	std::copy(iv.begin(),iv.end(), std::front_inserter(iv3));
-	for (auto i : iv3) {
-		cout << i << " ";
-	}
-	cout << endl;
+	//std::copy(iv.begin(),iv.end(), std::back_inserter(iv1));
+	//my_print(iv1);
+	//std::copy(iv.begin(),iv.end(), std::inserter(iv2, iv2.begin()));
+	//my_print(iv2);
+	//std::copy(iv.begin(),iv.end(), std::front_inserter(iv3));
+	//for (auto i : iv3) {
+	//	cout << i << " ";
+	//}
+	//cout << endl;
+
+	// 10.29
+	//std::ifstream ifs("..\\data\\ex_10.29.txt");
+	//std::istream_iterator<string> in(ifs), eof;
+	//std::ostream_iterator<string> out(cout, " ");
+	//std::vector<string> words;
+
+	//std::copy(in, eof, back_inserter(words));
+	//std::copy(words.begin(), words.end(), out);
+
+	// 10.30
+	cout << "Enter some numbers" << endl;
+	std::istream_iterator<int> in(cin), eof;
+	std::ostream_iterator<int> out(cout, " ");
+	std::vector<int> nums;
+	
+	std::copy(in, eof, back_inserter(nums));
+	std::sort(nums.begin(), nums.end());
+	//std::copy(nums.begin(), nums.end(), out);
+	// 10.31
+	std::unique_copy(nums.begin(), nums.end(), out);
 }
 
 void cp10_loop(void) {
