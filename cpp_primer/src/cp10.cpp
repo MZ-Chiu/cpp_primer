@@ -6,6 +6,7 @@
 #include <iterator>
 #include <deque>
 #include <fstream>
+#include <list>
 
 void ex10_1() {
 	std::vector<int> iv = { 1, 2, 3,4 ,5 ,6 ,4 ,3 ,2, 1, 1 };
@@ -220,16 +221,58 @@ void ex10_3(void) {
 	//std::copy(words.begin(), words.end(), out);
 
 	// 10.30
-	cout << "Enter some numbers" << endl;
-	std::istream_iterator<int> in(cin), eof;
-	std::ostream_iterator<int> out(cout, " ");
-	std::vector<int> nums;
-	
-	std::copy(in, eof, back_inserter(nums));
-	std::sort(nums.begin(), nums.end());
+	//cout << "Enter some numbers" << endl;
+	//std::istream_iterator<int> in(cin), eof;
+	//std::ostream_iterator<int> out(cout, " ");
+	//std::vector<int> nums;
+	//
+	//std::copy(in, eof, back_inserter(nums));
+	//std::sort(nums.begin(), nums.end());
 	//std::copy(nums.begin(), nums.end(), out);
 	// 10.31
-	std::unique_copy(nums.begin(), nums.end(), out);
+	//std::unique_copy(nums.begin(), nums.end(), out);
+
+	// 10.33
+	//std::ifstream ifs("..\\data\\ex_10.33.txt");
+	//std::ofstream ofs1("..\\data\\ex_10.33_out_even.txt", std::ios::out);
+	//std::ofstream ofs2("..\\data\\ex_10.33_out_odd.txt", std::ios::out);
+	//std::istream_iterator<int> in(ifs);
+	//std::ostream_iterator<int> out_even(ofs1, " ");
+	//std::ostream_iterator<int> out_odd(ofs2, " ");
+	//int num = 0;
+
+	//while (in != std::istream_iterator<int> ())
+	//{
+	//	if (*in % 2) {
+	//		out_even = *in;
+	//	}
+	//	else {
+	//		out_odd = *in;
+	//	}
+	//	++in;
+	//}
+}
+
+void ex10_4(void) {
+	// 10.34
+	//std::vector<int> iv = { 1, 2, 3, 4, 5, 6,7 ,8 ,9 };
+
+	//std::for_each(iv.crbegin(), iv.crend(), [](auto i) { cout << i << " "; });
+	//cout << endl;
+
+	// 10.35
+	//auto begin = iv.cbegin();
+	//auto end = iv.cend();
+	//while (end != begin) {
+	//	end--;
+	//	cout << *end << " ";
+	//}
+	//cout << endl;
+
+	// 10.36
+	std::list<int> lst = {1, 2, 0, 4, 0, 3, 4, 12, 4, 0, 2};
+	auto pos = find(lst.crbegin(), lst.crend(), 0);
+	cout << "pos:" << std::distance(pos, lst.crend()) << endl;
 }
 
 void cp10_loop(void) {
@@ -239,5 +282,7 @@ void cp10_loop(void) {
 
 	//ex10_2();
 
-	ex10_3();
+	//ex10_3();
+
+	ex10_4();
 }
