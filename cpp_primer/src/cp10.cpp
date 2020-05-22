@@ -270,9 +270,28 @@ void ex10_4(void) {
 	//cout << endl;
 
 	// 10.36
-	std::list<int> lst = {1, 2, 0, 4, 0, 3, 4, 12, 4, 0, 2};
-	auto pos = find(lst.crbegin(), lst.crend(), 0);
-	cout << "pos:" << std::distance(pos, lst.crend()) << endl;
+	//std::list<int> lst = {1, 2, 0, 4, 0, 3, 4, 12, 4, 0, 2};
+	//auto pos = find(lst.crbegin(), lst.crend(), 0);
+	//cout << "pos:" << std::distance(pos, lst.crend()) << endl;
+	
+	// 10.37
+	std::vector<int> i_vec = {1,2 ,3 ,4,5 ,6, 7, 8, 9, 10};
+	std::list<int> i_lst;
+
+	std::copy(i_vec.crbegin() + 3 - 1, i_vec.crbegin() + 7 + 1, std::front_inserter(i_lst));
+	std::for_each(i_lst.crbegin(), i_lst.crend(), [](int i) { cout << i << " "; });
+	cout << endl;
+}
+
+void ex10_5(void) {
+	// 10.38
+	/*
+		1. input iterator: read only, singal-pass, increment only
+		2. output iterator: write only, singal-pass, increment only
+		3. forward iterator: read/write, multi-pass, increment only
+		4. bidirectional iterator: read/write, multi-pass, increment/decrement
+		5. random-access iterator: read/write, multi-pass, full iterator arithmetic
+	*/
 }
 
 void cp10_loop(void) {
@@ -284,5 +303,7 @@ void cp10_loop(void) {
 
 	//ex10_3();
 
-	ex10_4();
+	//ex10_4();
+
+	ex10_5();
 }
