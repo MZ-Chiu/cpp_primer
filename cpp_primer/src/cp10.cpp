@@ -292,6 +292,26 @@ void ex10_5(void) {
 		4. bidirectional iterator: read/write, multi-pass, increment/decrement
 		5. random-access iterator: read/write, multi-pass, full iterator arithmetic
 	*/
+	
+	// 10.39
+	/*
+		1. list's iterator is a forward iterator
+		2. vector's iterator is a random-access iterator
+	*/
+
+	// 10.40
+	/*
+		Copy input require at least forward iterator, output can be any type of iterator
+	*/
+
+	// 10.42
+	std::list<string> s_lst = { "the", "quick", "red", "fox",
+	"jumps", "over", "the", "slow", "red", "turtle" };
+	s_lst.sort();
+	s_lst.unique();
+
+	std::for_each(s_lst.cbegin(), s_lst.cend(), [](string s) { cout << s << " "; });
+	cout << endl;
 }
 
 void cp10_loop(void) {
