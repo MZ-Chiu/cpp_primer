@@ -38,7 +38,7 @@ bld/
 #wwwroot/
 
 # VS project file
-*.vcxproj.*
+# *.vcxproj.*
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
