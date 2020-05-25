@@ -156,12 +156,45 @@ void ex11_3(void) {
 	//std::map<int, std::vector<int>>::mapped_type xx;
 	//std::map<int, std::vector<int>>::key_type yy;
 	//std::map<int, std::vector<int>>::value_type zz;
+
+	// 11.16
+	//std::map<int, string> map;
+	//map[11] = "qiu";
+	//cout << map[11] << endl;
+	//auto it = map.begin();
+	//it->second = "zhang";
+	//cout << map[11] << endl;
+
+	// 11.17
+	/* third is illegal no push_back in set. */
+
+	// 11.18
+	//std::map<string, size_t>::iterator wc_it;
+
+	// 11.19
+
+	// 11.20
+	std::map<string, size_t> dictionary;
+	string word;
+	cout << "Enter some words :" << endl;
+	while (cin >> word) {
+		word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
+		transform(word.begin(),word.end(), word.begin(), ::tolower);
+		auto ret = dictionary.insert({word, 1});
+		if (!ret.second) {
+			++ret.first->second;
+		}
+
+	}
+	for (auto pair : dictionary) {
+		cout << pair.first << " occur " << pair.second << (pair.second > 1 ? " times" : "time") << endl;
+	}
 }
 
 void cp11_loop(void) {
 	cout << "Welcom to cp11" << endl;
 
-	ex11_1_2();
+	//ex11_1_2();
 
 	ex11_3();
 }
