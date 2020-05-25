@@ -149,7 +149,13 @@ void ex11_1_2(void) {
 }
 
 void ex11_3(void) {
-	;
+	// 11.15
+	std::map<int, std::vector<int>> int_map;
+	//std::map<string, string> s_map = { "xxx", "yyy" };
+	/* mapped_type is std::vector<int>, key_type is int, value_type is pair<int, std::vector<int>> */
+	//std::map<int, std::vector<int>>::mapped_type xx;
+	//std::map<int, std::vector<int>>::key_type yy;
+	//std::map<int, std::vector<int>>::value_type zz;
 }
 
 void cp11_loop(void) {
