@@ -7,12 +7,34 @@
 #include <vector>
 #include <sstream>
 #include <list>
+#include <utility>
 
 bool foo(int l, int r) {
 	return l < r;
 }
 
-void ex11_1(void) {
+class Families {
+	using Child = std::pair<string, string>;
+	using Children = std::vector<Child>;
+	using Member = std::map<string, Children>;
+
+public:
+	Families &add(string f, string l, string b) { members[f].emplace_back(l, b); return *this; }
+	void print() { 
+		for (auto member : members) {
+			cout << member.first << endl;
+			for (auto child : member.second) {
+				cout << "name " << child.first << " birthday " << child.second << endl;
+			}
+			cout << endl;
+		}
+	}
+
+private:
+	Member members;
+};
+
+void ex11_1_2(void) {
 	// 11.1
 	/*
 		The different between map and vector is:
@@ -95,13 +117,45 @@ void ex11_1(void) {
 	// 11.10
 
 	// 11.11
-	using f = bool (*)(int l, int r);
-	//typedef bool (*f)(int l, int r);
-	std::multiset<int, f> multi_xx(foo);
+	//using f = bool (*)(int l, int r);
+	////typedef bool (*f)(int l, int r);
+	//std::multiset<int, f> multi_xx(foo);
+
+	// 11.12, 11.13
+	//std::vector<std::pair<string, int>> pair_vec;
+	//string word;
+	//int num;
+
+	//cout << "Enter English and Arabic numerals: " << endl;
+	//while (cin >> word >> num) {
+	//	//pair_vec.push_back(std::pair<string, int>(word, num));
+	//	//pair_vec.push_back(std::make_pair(word, num));
+	//	//pair_vec.push_back({ word, num });
+	//	pair_vec.emplace_back(word, num);
+	//}
+	//for (auto num_pair : pair_vec) {
+	//	cout << num_pair.first << ":" << num_pair.second << endl;
+	//}
+	//cout << endl;
+
+	// 11.14
+	Families fa;
+	string f, l, b;
+
+	while (cin >> f >> l >> b) {
+		fa.add(f, l, b);
+	}
+	fa.print();
+}
+
+void ex11_3(void) {
+	;
 }
 
 void cp11_loop(void) {
 	cout << "Welcom to cp11" << endl;
 
-	ex11_1();
+	ex11_1_2();
+
+	ex11_3();
 }
