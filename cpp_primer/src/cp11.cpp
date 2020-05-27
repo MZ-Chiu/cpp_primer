@@ -216,14 +216,14 @@ void ex11_3(void) {
 	//std::pair<std::map<string, std::vector<int>>::iterator, bool> ret = s2ivec_map.insert({"xxx", std::vector<int> (2, 3)});
 
 	// 11.23
-	Families1 fa1;
-	string f, l, b;
+	//Families1 fa1;
+	//string f, l, b;
 
-	cout << "Entern some people first name, last name, birthday:" << endl;
-	while (cin >> f >> l >> b) {
-		fa1.add(f, l, b);
-	}
-	fa1.print();
+	//cout << "Entern some people first name, last name, birthday:" << endl;
+	//while (cin >> f >> l >> b) {
+	//	fa1.add(f, l, b);
+	//}
+	//fa1.print();
 	
 	// 11.24, 11.25, 11.26
 
@@ -247,6 +247,30 @@ void ex11_3(void) {
 	second iterators refer to the position where this key can
 	be inserted.
 	*/
+
+	// 11.30
+	/* mapped */
+
+	// 11.31, 11.32
+	std::multimap<string, string> author_book;
+	string book;
+	string author;
+
+	cout << "Enter author and book" << endl;
+	while (cin >> author >> book)
+	{
+		author_book.emplace(author, book);
+	}
+	cin.clear();
+
+	cout << "Enter author to delete" << endl;
+	cin >> author;
+
+	auto pos = author_book.equal_range(author);
+	author_book.erase(pos.first, pos.second);
+	for (auto it : author_book) {
+		cout << it.first << "'s book: " << it.second << endl;
+	}
 }
 
 void cp11_loop(void) {
