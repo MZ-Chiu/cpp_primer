@@ -20,13 +20,31 @@ class Families {
 
 public:
 	Families &add(string f, string l, string b) { members[f].emplace_back(l, b); return *this; }
-	void print() { 
+	void print() {
 		for (auto member : members) {
 			cout << member.first << endl;
 			for (auto child : member.second) {
 				cout << "name " << child.first << " birthday " << child.second << endl;
 			}
 			cout << endl;
+		}
+	}
+
+private:
+	Member members;
+};
+
+class Families1 {
+	using Child = std::pair<string, string>;
+	using Member = std::multimap<string, Child>;
+
+public:
+	Families1 &add(string f, string l, string b) { members.insert({ f, {l, b} }); return *this; }
+	//Families1 &add(string f, string l, string b) { members.emplace(f, Child ( l, b )); return *this; }
+	void print() {
+		for (auto member : members) {
+			cout << member.first << " ";
+			cout << member.second.first << "'s birthday is " << member.second.second << endl;
 		}
 	}
 
@@ -174,21 +192,38 @@ void ex11_3(void) {
 	// 11.19
 
 	// 11.20
-	std::map<string, size_t> dictionary;
-	string word;
-	cout << "Enter some words :" << endl;
-	while (cin >> word) {
-		word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
-		transform(word.begin(),word.end(), word.begin(), ::tolower);
-		auto ret = dictionary.insert({word, 1});
-		if (!ret.second) {
-			++ret.first->second;
-		}
+	//std::map<string, size_t> dictionary;
+	//string word;
+	//cout << "Enter some words :" << endl;
+	//while (cin >> word) {
+	//	word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
+	//	transform(word.begin(),word.end(), word.begin(), ::tolower);
+	//	auto ret = dictionary.insert({word, 1});
+	//	if (!ret.second) {
+	//		++ret.first->second;
+	//	}
 
+	//}
+	//for (auto pair : dictionary) {
+	//	cout << pair.first << " occur " << pair.second << (pair.second > 1 ? " times" : "time") << endl;
+	//}
+
+	// 11.21
+	// Count the word occurs times.
+
+	// 11.22
+	//std::map<string, std::vector<int>> s2ivec_map;
+	//std::pair<std::map<string, std::vector<int>>::iterator, bool> ret = s2ivec_map.insert({"xxx", std::vector<int> (2, 3)});
+
+	// 11.23
+	Families1 fa1;
+	string f, l, b;
+
+	cout << "Entern some people first name, last name, birthday:" << endl;
+	while (cin >> f >> l >> b) {
+		fa1.add(f, l, b);
 	}
-	for (auto pair : dictionary) {
-		cout << pair.first << " occur " << pair.second << (pair.second > 1 ? " times" : "time") << endl;
-	}
+	fa1.print();
 }
 
 void cp11_loop(void) {
