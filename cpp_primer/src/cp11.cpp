@@ -8,6 +8,7 @@
 #include <sstream>
 #include <list>
 #include <utility>
+#include <fstream>
 
 bool foo(int l, int r) {
 	return l < r;
@@ -166,9 +167,47 @@ void ex11_1_2(void) {
 	fa.print();
 }
 
+std::map<string, string> make_trans_map(std::ifstream &map_file) {
+	std::map<string, string> trans_map;
+	string key, value;
+
+	while (map_file >> key && std::getline(map_file, value)) {
+		if (value.size() > 1) {
+			trans_map[key] = value.substr(1);
+		}
+		else {
+			cout << "No value for key" << endl;
+		}
+	}
+
+	return trans_map;
+}
+
+void word_transform(std::ifstream &map_file, std::ifstream &in_file) {
+	std::map<string, string> trans_map = make_trans_map(map_file);
+	string text;
+
+	while (std::getline(in_file, text)) {
+		std::stringstream ss(text);
+		string word;
+
+		while (ss >> word) {
+			auto it = trans_map.find(word);
+			if (it != trans_map.end()) {
+				cout << (*it).second << " ";
+			}
+			else {
+				cout << word << " ";
+			}
+		}
+		cout << endl;
+	}
+
+}
+
 void ex11_3(void) {
 	// 11.15
-	std::map<int, std::vector<int>> int_map;
+	//std::map<int, std::vector<int>> int_map;
 	//std::map<string, string> s_map = { "xxx", "yyy" };
 	/* mapped_type is std::vector<int>, key_type is int, value_type is pair<int, std::vector<int>> */
 	//std::map<int, std::vector<int>>::mapped_type xx;
@@ -252,25 +291,30 @@ void ex11_3(void) {
 	/* mapped */
 
 	// 11.31, 11.32
-	std::multimap<string, string> author_book;
-	string book;
-	string author;
+	//std::multimap<string, string> author_book;
+	//string book;
+	//string author;
 
-	cout << "Enter author and book" << endl;
-	while (cin >> author >> book)
-	{
-		author_book.emplace(author, book);
-	}
-	cin.clear();
+	//cout << "Enter author and book" << endl;
+	//while (cin >> author >> book)
+	//{
+	//	author_book.emplace(author, book);
+	//}
+	//cin.clear();
 
-	cout << "Enter author to delete" << endl;
-	cin >> author;
+	//cout << "Enter author to delete" << endl;
+	//cin >> author;
 
-	auto pos = author_book.equal_range(author);
-	author_book.erase(pos.first, pos.second);
-	for (auto it : author_book) {
-		cout << it.first << "'s book: " << it.second << endl;
-	}
+	//auto pos = author_book.equal_range(author);
+	//author_book.erase(pos.first, pos.second);
+	//for (auto it : author_book) {
+	//	cout << it.first << "'s book: " << it.second << endl;
+	//}
+
+	// 11.33 - 11.36
+	std::ifstream map_file("../data/ex11_33_map_file.txt");
+	std::ifstream in_file("../data/ex11_33_in_file.txt");
+	word_transform(map_file, in_file);
 }
 
 void cp11_loop(void) {
