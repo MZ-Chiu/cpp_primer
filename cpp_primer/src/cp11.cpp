@@ -224,6 +224,29 @@ void ex11_3(void) {
 		fa1.add(f, l, b);
 	}
 	fa1.print();
+	
+	// 11.24, 11.25, 11.26
+
+	// 11.27
+	// use count in multi-map/multi-set, as for associative container use find instead of count.
+
+	// 11.28
+	//std::map<string, std::vector<int>> map;
+	//map["xx"] = std::vector<int>{1, 2, 3};
+	////auto it = map.find("xx");
+	//std::map<string, std::vector<int>>::iterator it = map.find("xx");
+
+	// 11.29
+	/*
+	If the element is not in the multimap, then lower_bound
+	and upper_bound will return equal iterators; both will
+	refer to the point at which the key can be inserted without
+	disrupting the order.
+
+	If no matching element is found, then both the first and
+	second iterators refer to the position where this key can
+	be inserted.
+	*/
 }
 
 void cp11_loop(void) {
