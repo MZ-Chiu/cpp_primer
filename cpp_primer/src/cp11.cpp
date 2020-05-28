@@ -1,5 +1,6 @@
 #include "cp11.hpp"
 #include <map>
+#include <unordered_map>
 #include <set>
 #include <algorithm>
 #include <string>
@@ -312,9 +313,32 @@ void ex11_3(void) {
 	//}
 
 	// 11.33 - 11.36
-	std::ifstream map_file("../data/ex11_33_map_file.txt");
-	std::ifstream in_file("../data/ex11_33_in_file.txt");
-	word_transform(map_file, in_file);
+	//std::ifstream map_file("../data/ex11_33_map_file.txt");
+	//std::ifstream in_file("../data/ex11_33_in_file.txt");
+	//word_transform(map_file, in_file);
+
+	// 11.37
+	/*
+		unordered container
+			advantage :insert, find, erase element in constant time.
+			disadvantage : element not ordered in container
+		ordered container
+			advantage : element is ordered in container
+			disadvantage : ops not constant time
+	*/
+
+    // 11.38
+	std::unordered_map<string, size_t> dictionary;
+	string word;
+	cout << "Enter some words :" << endl;
+	while (cin >> word) {
+		word.erase(remove_if(word.begin(), word.end(), ispunct), word.end());
+		transform(word.begin(),word.end(), word.begin(), ::tolower);
+		++dictionary[word];
+	}
+	for (auto pair : dictionary) {
+		cout << pair.first << " occur " << pair.second << (pair.second > 1 ? " times" : "time") << endl;
+	}
 }
 
 void cp11_loop(void) {
