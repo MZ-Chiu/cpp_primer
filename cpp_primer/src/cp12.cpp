@@ -60,6 +60,26 @@ void fill_vector(std::shared_ptr<std::vector<int>> p) {
 	cout << endl;
 }
 
+class fd
+{
+public:
+	fd() : fs_ref(0) {};
+	~fd() { if (fs_ref > 0) disconnect(); };
+
+	void connect() { ++fs_ref; cout << "connect " << fs_ref << endl; };
+	void disconnect() { /*if (fs_ref > 0) --fs_ref; cout << "disconnect " << fs_ref << endl;*/ };
+
+private:
+	int fs_ref;
+};
+
+void ex_12_14(void) {
+	fd my_fd;
+	std::shared_ptr<fd> ();
+
+	my_fd.connect();
+	cout << "End of ex_12_14" << endl;
+}
 void ex12_1(void) {
 	// 12.1 - 12.5
 	//strBlob sb({ "a", "an" });
@@ -86,6 +106,26 @@ void ex12_1(void) {
 	// 12.9
 	/* old r will cause memoty leakage */
 	/* old r2 will be released automatically */
+
+	// 12.10
+	/* Correct */
+
+	// 12.11
+	/* An error was generated at run time: double free prossibility cause corruption */
+
+	// 12.12
+	/*
+		a. correct
+		b. illegal, plant pointer can't convert to shared_ptr implicity 
+		c. illegal, plant pointer can't convert to shared_ptr implicity
+		d. runtime error
+	*/
+
+	// 12.13
+	/* Runtime error, double free */
+
+	// 12.14
+	ex_12_14();
 
 }
 
