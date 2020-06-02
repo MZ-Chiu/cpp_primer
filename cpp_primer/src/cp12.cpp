@@ -63,21 +63,27 @@ void fill_vector(std::shared_ptr<std::vector<int>> p) {
 class fd
 {
 public:
-	fd() : fs_ref(0) {};
-	~fd() { if (fs_ref > 0) disconnect(); };
+	fd() {};
+	~fd() {};
 
 	void connect() { ++fs_ref; cout << "connect " << fs_ref << endl; };
-	void disconnect() { /*if (fs_ref > 0) --fs_ref; cout << "disconnect " << fs_ref << endl;*/ };
+	void disconnect() { if (fs_ref > 0) --fs_ref; cout << "disconnect " << fs_ref << endl; };
 
 private:
-	int fs_ref;
+	static int fs_ref;
 };
+int fd::fs_ref = 0;
 
-void ex_12_14(void) {
+void disconn(fd * p) {
+	p->disconnect();
+}
+
+void ex_12_14_15(void) {
 	fd my_fd;
-	std::shared_ptr<fd> ();
+	std::shared_ptr<fd> pfd(&my_fd, disconn);
+	//std::shared_ptr<fd> pfd(&my_fd, [](fd * p) { p->disconnect(); });
 
-	my_fd.connect();
+	pfd->connect();
 	cout << "End of ex_12_14" << endl;
 }
 void ex12_1(void) {
@@ -124,9 +130,26 @@ void ex12_1(void) {
 	// 12.13
 	/* Runtime error, double free */
 
-	// 12.14
-	ex_12_14();
+	// 12.14 12.15
+	//ex_12_14_15();
 
+	// 12.16
+	std::unique_ptr<int> up_int(new int(12));
+	//std::unique_ptr<int> up_int1(up_int);
+
+	// 12.17
+	/*
+		compile error: p0
+		recomented  : p4(new int(2048));
+		run time error : 
+			p1/p3: pi/&ix is not allocate using new
+			p2: Will cause a dangling pointer at run time
+			p5: one of p2/p5 if free the pointer will cause another unique_ptr reference invalid pointer
+			p6: Double free or courruption on run time
+	*/
+
+	// 12.18
+	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
 
 void cp12_loop(void) {
