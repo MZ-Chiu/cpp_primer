@@ -152,8 +152,15 @@ void ex12_1(void) {
 	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
 
+void ex12_2(void) {
+	// 12.19
+
+}
+
 void cp12_loop(void) {
 	cout << "Welcom to cp12" << endl;
 
-	ex12_1();
+	//ex12_1();
+
+	ex12_2();
 }
