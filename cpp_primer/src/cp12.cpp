@@ -2,9 +2,11 @@
 #include <vector>
 #include <memory>
 
+class strBlobPtr;
 class strBlob
 {
 public:
+	friend class strBlobPtr;
 	strBlob() : data(std::make_shared<std::vector<string>> ()) {};
 	strBlob(std::initializer_list<string> il) : data(std::make_shared<std::vector<string>>(il)) {};
 	strBlob &push_back(const string &s) { data->push_back(s); return *this; }
@@ -22,6 +24,32 @@ public:
 
 private:
 	std::shared_ptr<std::vector<string>> data;
+};
+
+class strBlobPtr {
+public:
+	strBlobPtr(strBlob &b) : wptr(b.data) {}
+	strBlobPtr() {}
+
+	void assign(strBlob &b) { wptr = b.data; }
+	string &deref() const {
+		auto p = check(curr, "deference pass end");
+		return (*p)[curr];
+	}
+
+private:
+	std::shared_ptr<std::vector<string>> check(size_t sz, const string &msg) const {
+		auto ret = wptr.lock();
+		if (!ret) {
+			throw std::runtime_error("unbound strBlobPtr");
+		}
+		if (sz >= ret->size()) {
+			throw std::out_of_range(msg);
+		}
+		return ret;
+	}
+	std::weak_ptr<std::vector<string>> wptr;
+	size_t curr = 0;
 };
 
 std::vector<int> *new_vector() {
@@ -152,9 +180,16 @@ void ex12_1(void) {
 	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
 
+strBlobPtr sbp;
 void ex12_2(void) {
 	// 12.19
-
+	{
+		strBlob sb = { "a", "an", "sb" };
+		sbp.assign(sb);
+		int a = 0;
+	}
+	
+	cout << sbp.deref() << endl;
 }
 
 void cp12_loop(void) {
@@ -162,5 +197,10 @@ void cp12_loop(void) {
 
 	//ex12_1();
 
-	ex12_2();
+	try {
+		ex12_2();
+	}
+	catch (const std::exception & ex) {
+		std::cerr << ex.what() << endl;
+	}
 }
