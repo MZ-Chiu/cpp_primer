@@ -1,6 +1,7 @@
 #include "cp12.hpp"
 #include <vector>
 #include <memory>
+#include <fstream>
 
 class strBlobPtr;
 class strBlob
@@ -35,6 +36,11 @@ public:
 	string &deref() const {
 		auto p = check(curr, "deference pass end");
 		return (*p)[curr];
+	}
+	strBlobPtr &incr() {
+		check(curr, "increament past end of strBlobPtr");
+		++curr;
+		return *this;
 	}
 
 private:
@@ -180,16 +186,31 @@ void ex12_1(void) {
 	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
 
-strBlobPtr sbp;
 void ex12_2(void) {
 	// 12.19
-	{
-		strBlob sb = { "a", "an", "sb" };
-		sbp.assign(sb);
-		int a = 0;
+	//strBlobPtr sbp;
+	//{
+	//	strBlob sb = { "a", "an", "sb" };
+	//	sbp.assign(sb);
+	//}
+	//while (1) {
+	//	cout << sbp.deref() << endl;
+	//	sbp.incr();
+	//}
+
+	// 12.20
+	strBlob sb;
+	string line;
+	std::ifstream ifs("../data/ex12_20.txt");
+
+	while (std::getline(ifs, line)) {
+		sb.push_back(line);
 	}
-	
-	cout << sbp.deref() << endl;
+	strBlobPtr sbp(sb);
+	while (1) {
+		cout << sbp.deref() << endl;
+		sbp.incr();
+	}
 }
 
 void cp12_loop(void) {

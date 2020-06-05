@@ -1,0 +1,5 @@
+exercise 12.20
+program code to read line
+from a file.
+store content to strBlob
+use strBlobPtr
