@@ -8,10 +8,14 @@ class strBlob
 {
 public:
 	friend class strBlobPtr;
+	strBlobPtr begin();
+	strBlobPtr end();
+
 	strBlob() : data(std::make_shared<std::vector<string>> ()) {};
 	strBlob(std::initializer_list<string> il) : data(std::make_shared<std::vector<string>>(il)) {};
 	strBlob &push_back(const string &s) { data->push_back(s); return *this; }
 	//const strBlob &push_back(const string &s) const { data->push_back(s); return *this; }
+
 
 	void print() {
 		for (auto s : *data)
@@ -29,7 +33,7 @@ private:
 
 class strBlobPtr {
 public:
-	strBlobPtr(strBlob &b) : wptr(b.data) {}
+	strBlobPtr(strBlob &b, size_t sz = 0) : wptr(b.data), curr(sz) {}
 	strBlobPtr() {}
 
 	void assign(strBlob &b) { wptr = b.data; }
@@ -42,6 +46,7 @@ public:
 		++curr;
 		return *this;
 	}
+	bool operator!=(const strBlobPtr& p) { return p.curr != curr; }
 
 private:
 	std::shared_ptr<std::vector<string>> check(size_t sz, const string &msg) const {
@@ -57,6 +62,9 @@ private:
 	std::weak_ptr<std::vector<string>> wptr;
 	size_t curr = 0;
 };
+
+strBlobPtr strBlob::begin() { return strBlobPtr(*this); }
+strBlobPtr strBlob::end() { return strBlobPtr(*this, data->size()); }
 
 std::vector<int> *new_vector() {
 	return new std::vector<int>;
@@ -199,6 +207,23 @@ void ex12_2(void) {
 	//}
 
 	// 12.20
+	//strBlob sb;
+	//string line;
+	//std::ifstream ifs("../data/ex12_20.txt");
+
+	//while (std::getline(ifs, line)) {
+	//	sb.push_back(line);
+	//}
+	//strBlobPtr sbp(sb);
+	//while (1) {
+	//	cout << sbp.deref() << endl;
+	//	sbp.incr();
+	//}
+
+	// 12.21
+	/* Original style is more readable */
+
+	// 12.22
 	strBlob sb;
 	string line;
 	std::ifstream ifs("../data/ex12_20.txt");
@@ -207,9 +232,8 @@ void ex12_2(void) {
 		sb.push_back(line);
 	}
 	strBlobPtr sbp(sb);
-	while (1) {
-		cout << sbp.deref() << endl;
-		sbp.incr();
+	for (strBlobPtr pbeg(sb.begin()), pend(sb.end()); pbeg != pend; pbeg.incr()) {
+		cout << pbeg.deref() << endl;
 	}
 }
 

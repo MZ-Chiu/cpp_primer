@@ -1,5 +1,6 @@
-exercise 12.20
+exercise 12.20 start
 program code to read line
 from a file.
 store content to strBlob
 use strBlobPtr
+exercise 12.20 end
