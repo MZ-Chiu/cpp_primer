@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <fstream>
+//#include "stdafx.h"
 
 class strBlobPtr;
 class strBlob
@@ -193,6 +194,44 @@ void ex12_1(void) {
 	// 12.18
 	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
+#include<string>
+
+class dynamicArray
+{
+public:
+	dynamicArray(uint16_t sz = 20) : totol(sz), curr(0), p(new char[sz]) {};
+	~dynamicArray() { delete[] p; };
+	dynamicArray &push(const char *sc, uint16_t len) {
+		if (curr + len > totol) {
+			totol = 2 * totol;
+			char *p_new = new char[totol] {};
+
+			strcpy_s(p_new, totol, p);
+			strcat_s(p_new, totol, sc);
+			delete[] p;
+			p = p_new;
+			curr += len;
+		}
+		else {
+			if (curr == 0) {
+				strcpy_s(p, totol, sc);
+			}
+			else {
+				strcat_s(p, totol, sc);
+			}
+			curr += len;
+		}
+		return *this;
+	}
+	void print() {
+		cout << p << endl;
+	}
+
+private:
+	char *p;
+	uint16_t totol;
+	uint16_t curr;
+};
 
 void ex12_2(void) {
 	// 12.19
@@ -224,17 +263,43 @@ void ex12_2(void) {
 	/* Original style is more readable */
 
 	// 12.22
-	strBlob sb;
-	string line;
-	std::ifstream ifs("../data/ex12_20.txt");
+	//strBlob sb;
+	//string line;
+	//std::ifstream ifs("../data/ex12_20.txt");
 
-	while (std::getline(ifs, line)) {
-		sb.push_back(line);
-	}
-	strBlobPtr sbp(sb);
-	for (strBlobPtr pbeg(sb.begin()), pend(sb.end()); pbeg != pend; pbeg.incr()) {
-		cout << pbeg.deref() << endl;
-	}
+	//while (std::getline(ifs, line)) {
+	//	sb.push_back(line);
+	//}
+	//strBlobPtr sbp(sb);
+	//for (strBlobPtr pbeg(sb.begin()), pend(sb.end()); pbeg != pend; pbeg.incr()) {
+	//	cout << pbeg.deref() << endl;
+	//}
+
+	// 12.23
+	//const char* cs1 = "cstring1";
+	//const char* cs2 = "cstring2";
+	//char *p = (char *)new char[strlen(cs1) + strlen(cs2) + 1] {0};
+
+	//memcpy(p, cs1, strlen(cs1));
+	//memcpy(p + strlen(cs1), cs2, strlen(cs2));
+	//cout << p << endl;
+	//delete [] p;
+
+	//string s1 = "string1";
+	//string s2 = "string2";
+	//cout << s1 + s2 << endl;
+
+	// 12.24
+	//dynamicArray dArray;
+	//string s;
+	//cout << "Enter some characters" << endl;
+	//while (cin >> s) {
+	//	dArray.push(s.c_str(), s.size());
+	//}
+	//dArray.print();
+
+	// 12.25
+	// delete [] p;
 }
 
 void cp12_loop(void) {
