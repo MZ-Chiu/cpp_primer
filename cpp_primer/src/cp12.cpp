@@ -2,7 +2,6 @@
 #include <vector>
 #include <memory>
 #include <fstream>
-//#include "stdafx.h"
 
 class strBlobPtr;
 class strBlob
@@ -300,6 +299,23 @@ void ex12_2(void) {
 
 	// 12.25
 	// delete [] p;
+	
+	// 12.26
+	//std::allocator<string> str_alloc;
+	//auto p = str_alloc.allocate(5);
+	//auto q = p;
+	//string s;
+
+	//while (p +5 != q && cin >> s) {
+	//	str_alloc.construct(q++, s);
+	//}
+	//while (q != p) {
+	//	cout << *--q << endl;
+	//	str_alloc.destroy(q);
+	//}
+	//str_alloc.deallocate(p, 5);
+
+	// 12.27
 }
 
 void cp12_loop(void) {
