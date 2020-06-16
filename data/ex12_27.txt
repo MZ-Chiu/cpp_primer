@@ -1,0 +1,62 @@
+
+class fileSearcher
+{
+public:
+	fileSearcher(std::ifstream &in_f);
+	~fileSearcher() {};
+	bool find(const string &word);
+	bool find_in_result(const string &word);
+
+private:
+	std::vector<string> text;
+	std::map<string, std::vector<int>> words_map;
+};
+
+fileSearcher::fileSearcher(std::ifstream &in_f) {
+	string line;
+	/* Load file */
+	while (std::getline(in_f, line)) {
+		text.push_back(line);
+	}
+}
+
+bool fileSearcher::find_in_result(const string &word) {
+
+	auto search = words_map.find(word);
+
+	if (search != words_map.end()) {
+		if (search->second[0] < 0) {
+			cout << "No [" << word << "] find" << endl;
+			return false;
+		}
+
+		cout << words_map.count(word) << "\"" << word << "\" find" << endl;
+		for (auto it = search->second.cbegin(), end = search->second.cend(); it != end; ++it) {
+			std::cout << "L" << *it << ":" << text[*it] << endl;
+		}
+	}
+}
+
+bool fileSearcher::find(const string &word) {
+
+	auto search = words_map.find(word);
+	
+	if (find_in_result(word)) {
+		return true;
+	}
+	else { /* go through text */
+		int line_cnt = 0;
+		bool found = false;
+		for (auto it = text.cbegin(), end = text.cend(); it != end; ++it) {
+			if (string::npos != it->find(word)) {
+				words_map[word].push_back(line_cnt);
+				found = true;
+			}
+			++line_cnt;
+		}
+		if (found == false) {
+			return false;
+		}
+	}
+	return find_in_result(word);
+}

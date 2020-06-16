@@ -2,6 +2,10 @@
 #include <vector>
 #include <memory>
 #include <fstream>
+#include <map>
+#include <sstream>
+#include <set>
+#include <algorithm>
 
 class strBlobPtr;
 class strBlob
@@ -232,6 +236,82 @@ private:
 	uint16_t curr;
 };
 
+class fileSearcher
+{
+public:
+	fileSearcher(std::ifstream &in_f);
+	~fileSearcher() {};
+	bool find(const string &word);
+
+private:
+	int find_in_result(const string &word);
+	std::vector<string> text;
+	std::map<string, std::vector<int>> words_map;
+};
+
+fileSearcher::fileSearcher(std::ifstream &in_f) {
+	string line;
+	/* Load file */
+	while (std::getline(in_f, line)) {
+		text.push_back(line);
+	}
+}
+
+int fileSearcher::find_in_result(const string &word) {
+
+	auto search = words_map.find(word);
+
+	if (search != words_map.end()) {
+		if (search->second[0] < 0) {
+			cout << "No [" << word << "] find" << endl;
+			return -1;
+		}
+
+		cout << search->second.size() << " \"" << word << "\" find" << endl;
+		for (auto it = search->second.begin(), end = search->second.end(); it != end; ++it) {
+			std::cout << "L" << *it + 1 << ":" << text[*it] << endl;
+		}
+		return search->second.size();
+	}
+	return 0;
+}
+
+bool fileSearcher::find(const string &word) {
+	int ret = find_in_result(word);
+
+	if (ret != 0) {
+		return ret > 0;
+	}
+	else { /* go through text */
+		int line_cnt = 0;
+		bool found = false;
+		for (auto it = text.cbegin(), end = text.cend(); it != end; ++it) {
+			std::istringstream iss(*it);
+			std::set<string> str_set;
+			string word_in_text;
+			string word_strip;
+
+			while (iss >> word_in_text) {
+				// avoid read a word followed by punctuation(such as: word, )
+				word_strip.clear();
+				std::remove_copy_if(word_in_text.begin(), word_in_text.end(), std::back_inserter(word_strip), ispunct);
+				str_set.insert(word_strip);
+			}
+			if (str_set.end() != str_set.find(word)) {
+				words_map[word].push_back(line_cnt);
+				found = true;
+			}
+			++line_cnt;
+		}
+		if (found == false) {
+			cout << "No \"" << word << "\" found" << endl;
+			words_map[word].push_back(-1);// mark, as no this word
+			return false;
+		}
+	}
+	return find_in_result(word);
+}
+
 void ex12_2(void) {
 	// 12.19
 	//strBlobPtr sbp;
@@ -315,7 +395,15 @@ void ex12_2(void) {
 	//}
 	//str_alloc.deallocate(p, 5);
 
-	// 12.27
+	// 12.27, 12.28, 12.29
+	std::ifstream in_file("../data/ex12_27.txt");
+	fileSearcher fser(in_file);
+	string word;
+
+	cout << "Enter word to find" << endl;
+	while (cin >> word) {
+		fser.find(word);
+	}
 }
 
 void cp12_loop(void) {
