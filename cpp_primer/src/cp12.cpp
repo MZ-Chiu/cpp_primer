@@ -289,11 +289,10 @@ bool fileSearcher::find(const string &word) {
 			std::istringstream iss(*it);
 			std::set<string> str_set;
 			string word_in_text;
-			string word_strip;
 
 			while (iss >> word_in_text) {
+				string word_strip;
 				// avoid read a word followed by punctuation(such as: word, )
-				word_strip.clear();
 				std::remove_copy_if(word_in_text.begin(), word_in_text.end(), std::back_inserter(word_strip), ispunct);
 				str_set.insert(word_strip);
 			}
