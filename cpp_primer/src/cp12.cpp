@@ -394,15 +394,21 @@ void ex12_2(void) {
 	//}
 	//str_alloc.deallocate(p, 5);
 
-	// 12.27, 12.28, 12.29
-	std::ifstream in_file("../data/ex12_27.txt");
-	fileSearcher fser(in_file);
-	string word;
+	// 12.27, 12.28, 12.29, 12.30
+	//std::ifstream in_file("../data/ex12_27.txt");
+	//fileSearcher fser(in_file);
+	//string word;
 
-	cout << "Enter word to find" << endl;
-	while (cin >> word) {
-		fser.find(word);
-	}
+	//cout << "Enter word to find" << endl;
+	//while (cin >> word) {
+	//	fser.find(word);
+	//}
+
+	// 12.31
+	// 'set' guarantee elements being held ard unique, 'vector' not guarantee.
+
+	// 12.32, 12.33
+
 }
 
 void cp12_loop(void) {
@@ -410,10 +416,10 @@ void cp12_loop(void) {
 
 	//ex12_1();
 
-	try {
-		ex12_2();
-	}
-	catch (const std::exception & ex) {
-		std::cerr << ex.what() << endl;
-	}
+	//try {
+	//	ex12_2();
+	//}
+	//catch (const std::exception & ex) {
+	//	std::cerr << ex.what() << endl;
+	//}
 }
