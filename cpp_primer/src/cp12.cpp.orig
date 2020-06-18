@@ -1,11 +1,11 @@
 #include "cp12.hpp"
-#include <vector>
 #include <memory>
 #include <fstream>
 #include <map>
 #include <sstream>
 #include <set>
 #include <algorithm>
+
 
 class strBlobPtr;
 class strBlob
@@ -15,7 +15,7 @@ public:
 	strBlobPtr begin();
 	strBlobPtr end();
 
-	strBlob() : data(std::make_shared<std::vector<string>> ()) {};
+	strBlob() : data(std::make_shared<std::vector<string>>()) {};
 	strBlob(std::initializer_list<string> il) : data(std::make_shared<std::vector<string>>(il)) {};
 	strBlob &push_back(const string &s) { data->push_back(s); return *this; }
 	//const strBlob &push_back(const string &s) const { data->push_back(s); return *this; }
@@ -70,45 +70,6 @@ private:
 	size_t curr = 0;
 };
 
-strBlobPtr strBlob::begin() { return strBlobPtr(*this); }
-strBlobPtr strBlob::end() { return strBlobPtr(*this, data->size()); }
-
-std::vector<int> *new_vector() {
-	return new std::vector<int>;
-}
-
-std::shared_ptr<std::vector<int>> make_shared_vector() {
-	return std::make_shared<std::vector<int>>();
-}
-
-void fill_vector(std::vector<int> *p) {
-	int n = 0;
-	cout << "This is new, enter some numbers:" << endl;
-	cin.clear();
-	while (cin >> n) {
-		p->push_back(n);
-	}
-
-	for (auto i : *p) {
-		cout << i << " ";
-	}
-	cout << endl;
-}
-
-void fill_vector(std::shared_ptr<std::vector<int>> p) {
-	int n = 0;
-	cout << "This is share pointer, enter some numbers:" << endl;
-	cin.clear();
-	while (cin >> n) {
-		p->push_back(n);
-	}
-
-	for (auto i : *p) {
-		cout << i << " ";
-	}
-	cout << endl;
-}
-
 class fd
 {
 public:
@@ -121,86 +82,6 @@ public:
 private:
 	static int fs_ref;
 };
-int fd::fs_ref = 0;
-
-void disconn(fd * p) {
-	p->disconnect();
-}
-
-void ex_12_14_15(void) {
-	fd my_fd;
-	std::shared_ptr<fd> pfd(&my_fd, disconn);
-	//std::shared_ptr<fd> pfd(&my_fd, [](fd * p) { p->disconnect(); });
-
-	pfd->connect();
-	cout << "End of ex_12_14" << endl;
-}
-void ex12_1(void) {
-	// 12.1 - 12.5
-	//strBlob sb({ "a", "an" });
-	//sb.push_back("im qmz");
-	//sb.print();
-	//cout << sb.front() << " " << endl;
-	//cout << sb.back() << " " << endl;
-
-	//const strBlob csb({ "aa", "aan" });
-	////csb.push_back("xyz");
-
-	// 12.6, 12.7
-	//std::vector<int> *p_vec = new_vector();
-	//std::shared_ptr<std::vector<int>> p_share_vec = make_shared_vector();
-
-	//fill_vector(p_vec);
-	//fill_vector(p_share_vec);
-	//delete p_vec;
-	//p_vec = NULL;
-
-	// 12.8
-	/* return pointer for bool, error */
-
-	// 12.9
-	/* old r will cause memoty leakage */
-	/* old r2 will be released automatically */
-
-	// 12.10
-	/* Correct */
-
-	// 12.11
-	/* An error was generated at run time: double free prossibility cause corruption */
-
-	// 12.12
-	/*
-		a. correct
-		b. illegal, plant pointer can't convert to shared_ptr implicity 
-		c. illegal, plant pointer can't convert to shared_ptr implicity
-		d. runtime error
-	*/
-
-	// 12.13
-	/* Runtime error, double free */
-
-	// 12.14 12.15
-	//ex_12_14_15();
-
-	// 12.16
-	std::unique_ptr<int> up_int(new int(12));
-	//std::unique_ptr<int> up_int1(up_int);
-
-	// 12.17
-	/*
-		compile error: p0
-		recomented  : p4(new int(2048));
-		run time error : 
-			p1/p3: pi/&ix is not allocate using new
-			p2: Will cause a dangling pointer at run time
-			p5: one of p2/p5 if free the pointer will cause another unique_ptr reference invalid pointer
-			p6: Double free or courruption on run time
-	*/
-
-	// 12.18
-	/* Cause multi-shared_ptr don't need release when copy/assigment/reference */
-}
-#include<string>
 
 class dynamicArray
 {
@@ -332,6 +213,7 @@ void fill_vector(std::vector<int> *p)
     cout << endl;
 }
 
+<<<<<<< HEAD
 void fill_vector(std::shared_ptr<std::vector<int>> p)
 {
     int n = 0;
@@ -351,6 +233,106 @@ void fill_vector(std::shared_ptr<std::vector<int>> p)
 void disconn(fd * p)
 {
     p->disconnect();
+=======
+void ex12_2(void) {
+	// 12.19
+	//strBlobPtr sbp;
+	//{
+	//	strBlob sb = { "a", "an", "sb" };
+	//	sbp.assign(sb);
+	//}
+	//while (1) {
+	//	cout << sbp.deref() << endl;
+	//	sbp.incr();
+	//}
+
+	// 12.20
+	//strBlob sb;
+	//string line;
+	//std::ifstream ifs("../data/ex12_20.txt");
+
+	//while (std::getline(ifs, line)) {
+	//	sb.push_back(line);
+	//}
+	//strBlobPtr sbp(sb);
+	//while (1) {
+	//	cout << sbp.deref() << endl;
+	//	sbp.incr();
+	//}
+
+	// 12.21
+	/* Original style is more readable */
+
+	// 12.22
+	//strBlob sb;
+	//string line;
+	//std::ifstream ifs("../data/ex12_20.txt");
+
+	//while (std::getline(ifs, line)) {
+	//	sb.push_back(line);
+	//}
+	//strBlobPtr sbp(sb);
+	//for (strBlobPtr pbeg(sb.begin()), pend(sb.end()); pbeg != pend; pbeg.incr()) {
+	//	cout << pbeg.deref() << endl;
+	//}
+
+	// 12.23
+	//const char* cs1 = "cstring1";
+	//const char* cs2 = "cstring2";
+	//char *p = (char *)new char[strlen(cs1) + strlen(cs2) + 1] {0};
+
+	//memcpy(p, cs1, strlen(cs1));
+	//memcpy(p + strlen(cs1), cs2, strlen(cs2));
+	//cout << p << endl;
+	//delete [] p;
+
+	//string s1 = "string1";
+	//string s2 = "string2";
+	//cout << s1 + s2 << endl;
+
+	// 12.24
+	//dynamicArray dArray;
+	//string s;
+	//cout << "Enter some characters" << endl;
+	//while (cin >> s) {
+	//	dArray.push(s.c_str(), s.size());
+	//}
+	//dArray.print();
+
+	// 12.25
+	// delete [] p;
+	
+	// 12.26
+	//std::allocator<string> str_alloc;
+	//auto p = str_alloc.allocate(5);
+	//auto q = p;
+	//string s;
+
+	//while (p +5 != q && cin >> s) {
+	//	str_alloc.construct(q++, s);
+	//}
+	//while (q != p) {
+	//	cout << *--q << endl;
+	//	str_alloc.destroy(q);
+	//}
+	//str_alloc.deallocate(p, 5);
+
+	// 12.27, 12.28, 12.29, 12.30
+	//std::ifstream in_file("../data/ex12_27.txt");
+	//fileSearcher fser(in_file);
+	//string word;
+
+	//cout << "Enter word to find" << endl;
+	//while (cin >> word) {
+	//	fser.find(word);
+	//}
+
+	// 12.31
+	// 'set' guarantee elements being held ard unique, 'vector' not guarantee.
+
+	// 12.32, 12.33
+
+>>>>>>> 775a7612b56c028b15fb5d5fe4e186068c09de14
 }
 
 void ex_12_14_15(void)
@@ -429,6 +411,7 @@ void ex12_1(void)
     /* Cause multi-shared_ptr don't need release when copy/assigment/reference */
 }
 
+<<<<<<< HEAD
 fileSearcher::fileSearcher(std::ifstream &in_f)
 {
     string line;
@@ -625,4 +608,12 @@ void cp12_loop(void)
     } catch (const std::exception & ex) {
         std::cerr << ex.what() << endl;
     }
+=======
+	//try {
+	//	ex12_2();
+	//}
+	//catch (const std::exception & ex) {
+	//	std::cerr << ex.what() << endl;
+	//}
+>>>>>>> 775a7612b56c028b15fb5d5fe4e186068c09de14
 }

@@ -24,6 +24,7 @@
     <ClCompile Include="src\cp10.cpp" />
     <ClCompile Include="src\cp11.cpp" />
     <ClCompile Include="src\cp12.cpp" />
+    <ClCompile Include="src\cp13.cpp" />
     <ClCompile Include="src\cp2.cpp" />
     <ClCompile Include="src\cp3.cpp" />
     <ClCompile Include="src\cp4.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="src\cp10.hpp" />
     <ClInclude Include="src\cp11.hpp" />
     <ClInclude Include="src\cp12.hpp" />
+    <ClInclude Include="src\cp13.hpp" />
     <ClInclude Include="src\cp2.hpp" />
     <ClInclude Include="src\cp3.hpp" />
     <ClInclude Include="src\cp4.hpp" />
